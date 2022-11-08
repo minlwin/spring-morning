@@ -6,9 +6,9 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 public class DataSourceManager {
 
-	private static final String URL = "jdbc:mysql://localhost:3306/demo_db";
-	private static final String USER = "demousr";
-	private static final String PASS = "demopass";
+	private static final String URL = "jdbc:mysql://localhost:3306/registrations";
+	private static final String USER = "registrations";
+	private static final String PASS = "registrations";
 
 	public static DataSource getDataSource() {
 		var ds = new BasicDataSource();
