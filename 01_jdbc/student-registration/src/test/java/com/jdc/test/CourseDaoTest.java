@@ -3,18 +3,25 @@ package com.jdc.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import com.jdc.registration.model.AppDataValidationException;
 import com.jdc.registration.model.DataSourceManager;
 import com.jdc.registration.model.dao.CourseDao;
 import com.jdc.registration.model.dto.Course;
 import com.jdc.registration.model.dto.Course.Level;
 import com.jdc.test.utils.DbUtils;
 
+@TestMethodOrder(OrderAnnotation.class)
 public class CourseDaoTest {
 
 	private CourseDao dao;
@@ -33,6 +40,7 @@ public class CourseDaoTest {
 				);
 	}
 
+	@Order(1)
 	@ParameterizedTest
 	@CsvFileSource(delimiter = '\t', resources = "/course-insert.tsv")
 	void test_save_insert(int id, String name, Level level, int duration, int fees, String description,
@@ -47,6 +55,16 @@ public class CourseDaoTest {
 		assertEquals(id, result);
 	}
 	
+	@Order(2)
+	@Test
+	void test_save_insert_with_null_data() {
+		
+		var exception = assertThrows(AppDataValidationException.class, () -> dao.save(null));
+		
+		assertEquals(1, exception.getMessages().size());
+	}
+	
+	@Order(3)
 	@ParameterizedTest
 	@CsvFileSource(delimiter = '\t', resources = "/course-find-by-id.txt")
 	void test_find_by_id(int id, String name, Level level, int duration, int fees, String description, boolean deleted) {
@@ -54,6 +72,7 @@ public class CourseDaoTest {
 		var result = dao.findById(id);
 		
 		assertNotNull(result);
+		
 		assertEquals(id, result.getId());
 		assertEquals(name, result.getName());
 		assertEquals(level, result.getLevel());
@@ -64,6 +83,7 @@ public class CourseDaoTest {
 		
 	}
 	
+	@Order(4)
 	@ParameterizedTest
 	@ValueSource(ints = {0, 5, 6})
 	void test_find_by_id_not_found(int id) {

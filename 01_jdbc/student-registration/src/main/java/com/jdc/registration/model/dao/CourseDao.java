@@ -2,10 +2,12 @@ package com.jdc.registration.model.dao;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.jdc.registration.model.AppDataValidationException;
 import com.jdc.registration.model.dto.Course;
 import com.jdc.registration.model.dto.Course.Level;
 
@@ -19,11 +21,48 @@ public class CourseDao {
 	}
 
 	public int save(Course dto) {
+		
+		validate(dto);
+		
 		if (dto.getId() == 0) {
 			// Insert
 			return insert(dto);
 		}
 		return update(dto);
+	}
+
+	private void validate(Course dto) {
+
+		if(null == dto) {
+			throw new AppDataValidationException("Course must not be null!");
+		}
+		
+		var errors = new ArrayList<String>();
+		
+		// Name
+		if(null == dto.getName() || dto.getName().isBlank()) {
+			errors.add("Please enter course name.");
+		}
+		
+		// Level
+		if(null == dto.getLevel()) {
+			errors.add("Please select level of course.");
+		}
+		
+		// duration
+		if(0 == dto.getDuration()) {
+			errors.add("Please define duration of course.");
+		}
+
+		// fees
+		if(0 == dto.getFees()) {
+			errors.add("Please define fees of course.");
+		}
+		
+		if(!errors.isEmpty()) {
+			throw new AppDataValidationException(errors);
+		}
+		
 	}
 
 	private int update(Course dto) {
