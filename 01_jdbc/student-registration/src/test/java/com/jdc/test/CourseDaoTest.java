@@ -1,8 +1,12 @@
 package com.jdc.test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +21,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import com.jdc.registration.model.AppDataValidationException;
 import com.jdc.registration.model.DataSourceManager;
 import com.jdc.registration.model.dao.CourseDao;
+import com.jdc.registration.model.dao.CourseRepo;
 import com.jdc.registration.model.dto.Course;
 import com.jdc.registration.model.dto.Course.Level;
 import com.jdc.test.utils.DbUtils;
@@ -24,7 +29,7 @@ import com.jdc.test.utils.DbUtils;
 @TestMethodOrder(OrderAnnotation.class)
 public class CourseDaoTest {
 
-	private CourseDao dao;
+	private CourseRepo dao;
 
 	@BeforeEach
 	void intDao() {
@@ -52,7 +57,8 @@ public class CourseDaoTest {
 		var result = dao.save(course);
 
 		// Check Result
-		assertEquals(id, result);
+		assertThat(result, is(id));
+		
 	}
 	
 	@Order(2)
@@ -60,36 +66,72 @@ public class CourseDaoTest {
 	void test_save_insert_with_null_data() {
 		
 		var exception = assertThrows(AppDataValidationException.class, () -> dao.save(null));
-		
-		assertEquals(1, exception.getMessages().size());
+			
+		assertThat(exception, allOf(
+				notNullValue(),
+				hasProperty("messages", hasSize(1))
+		));
 	}
 	
 	@Order(3)
+	@ParameterizedTest
+	@CsvFileSource(delimiter = '\t', resources = "/test_save_insert_name_duplication.txt")
+	void test_save_insert_name_duplication(String name, Level level, int duration, int fees, String description,
+			boolean deleted) {
+		
+		// Prepare Data
+		var course = new Course(name, level, duration, fees, description, deleted);
+		
+		var exception = assertThrows(AppDataValidationException.class, () -> dao.save(course));
+		
+		assertThat(exception, allOf(
+				notNullValue(),
+				hasProperty("messages", hasSize(1))
+		));
+
+	}
+	
+	@Order(4)
+	@ParameterizedTest
+	@CsvFileSource(delimiter = '\t', resources = "/test_save_insert_validation.txt")
+	void test_save_insert_validation(String name, Level level, int duration, int fees, String description,
+			boolean deleted, int messages) {
+		
+		var course = new Course(name, level, duration, fees, description, deleted);
+		
+		var exception = assertThrows(AppDataValidationException.class, () -> dao.save(course));
+		
+		assertThat(exception, allOf(
+				notNullValue(),
+				hasProperty("messages", hasSize(messages))
+		));
+	}
+	
+	@Order(5)
 	@ParameterizedTest
 	@CsvFileSource(delimiter = '\t', resources = "/course-find-by-id.txt")
 	void test_find_by_id(int id, String name, Level level, int duration, int fees, String description, boolean deleted) {
 		
 		var result = dao.findById(id);
 		
-		assertNotNull(result);
-		
-		assertEquals(id, result.getId());
-		assertEquals(name, result.getName());
-		assertEquals(level, result.getLevel());
-		assertEquals(duration, result.getDuration());
-		assertEquals(fees, result.getFees());
-		assertEquals(description, result.getDescription());
-		assertEquals(deleted, result.isDeleted());
-		
+		assertThat(result, allOf(
+				notNullValue(),
+				hasProperty("id", is(id)),
+				hasProperty("name", is(name)),
+				hasProperty("level", is(level)),
+				hasProperty("duration", is(duration)),
+				hasProperty("description", is(description)),
+				hasProperty("deleted", is(deleted))
+		));
 	}
 	
-	@Order(4)
+	@Order(6)
 	@ParameterizedTest
 	@ValueSource(ints = {0, 5, 6})
 	void test_find_by_id_not_found(int id) {
 		
 		var result = dao.findById(id);
 		
-		assertNull(result);
+		assertThat(result, nullValue());
 	}
 }

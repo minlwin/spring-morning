@@ -1,0 +1,4 @@
+Java Basic	Entry	90	300000	Foundation for Java Programming	false
+Spring Framework	Intermediate	180	500000	Framework course for Java	false
+Angular Framework	Advance	120	300000	Front End Framework Course	false
+Flutter	Intermediate	180	300000	Mobile Development Course	true
