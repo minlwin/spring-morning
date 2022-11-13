@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.jdc.registration.model.dto.Classes;
+import com.jdc.registration.model.form.ClassesForm;
 
 /**
  * Classes Table Access Object
@@ -22,7 +23,7 @@ public interface ClassesRepo {
 	 * @param dto Classes Data
 	 * @return Primary Key
 	 */
-	int save(Classes dto);
+	int save(ClassesForm dto);
 	
 	/**
 	 * Find Classes Data by Primary Key
