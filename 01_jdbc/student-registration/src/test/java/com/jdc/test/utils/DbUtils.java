@@ -2,7 +2,7 @@ package com.jdc.test.utils;
 
 import java.sql.SQLException;
 
-import com.jdc.registration.model.DataSourceManager;
+import com.jdc.registration.DataSourceManager;
 
 public class DbUtils {
 

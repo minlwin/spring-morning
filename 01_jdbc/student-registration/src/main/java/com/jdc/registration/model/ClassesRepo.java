@@ -1,4 +1,4 @@
-package com.jdc.registration.model.dao;
+package com.jdc.registration.model;
 
 import java.util.Date;
 import java.util.List;

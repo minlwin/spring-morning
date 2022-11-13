@@ -18,10 +18,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import com.jdc.registration.model.AppDataValidationException;
-import com.jdc.registration.model.DataSourceManager;
+import com.jdc.registration.AppDataValidationException;
+import com.jdc.registration.DataSourceManager;
+import com.jdc.registration.model.CourseRepo;
 import com.jdc.registration.model.dao.CourseDao;
-import com.jdc.registration.model.dao.CourseRepo;
 import com.jdc.registration.model.dto.Course;
 import com.jdc.registration.model.dto.Course.Level;
 import com.jdc.test.utils.DbUtils;
@@ -47,7 +47,7 @@ public class CourseDaoTest {
 
 	@Order(1)
 	@ParameterizedTest
-	@CsvFileSource(delimiter = '\t', resources = "/course-insert.tsv")
+	@CsvFileSource(delimiter = '\t', resources = "/course/course-insert.txt")
 	void test_save_insert(int id, String name, Level level, int duration, int fees, String description,
 			boolean deleted) {
 		// Prepare Data
@@ -75,7 +75,7 @@ public class CourseDaoTest {
 	
 	@Order(3)
 	@ParameterizedTest
-	@CsvFileSource(delimiter = '\t', resources = "/test_save_insert_name_duplication.txt")
+	@CsvFileSource(delimiter = '\t', resources = "/course/test_save_insert_name_duplication.txt")
 	void test_save_insert_name_duplication(String name, Level level, int duration, int fees, String description,
 			boolean deleted) {
 		
@@ -93,7 +93,7 @@ public class CourseDaoTest {
 	
 	@Order(4)
 	@ParameterizedTest
-	@CsvFileSource(delimiter = '\t', resources = "/test_save_insert_validation.txt")
+	@CsvFileSource(delimiter = '\t', resources = "/course/test_save_insert_validation.txt")
 	void test_save_insert_validation(String name, Level level, int duration, int fees, String description,
 			boolean deleted, int messages) {
 		
@@ -109,7 +109,7 @@ public class CourseDaoTest {
 	
 	@Order(5)
 	@ParameterizedTest
-	@CsvFileSource(delimiter = '\t', resources = "/course-find-by-id.txt")
+	@CsvFileSource(delimiter = '\t', resources = "/course/course-find-by-id.txt")
 	void test_find_by_id(int id, String name, Level level, int duration, int fees, String description, boolean deleted) {
 		
 		var result = dao.findById(id);

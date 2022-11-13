@@ -1,4 +1,4 @@
-package com.jdc.registration.model;
+package com.jdc.registration;
 
 import javax.sql.DataSource;
 

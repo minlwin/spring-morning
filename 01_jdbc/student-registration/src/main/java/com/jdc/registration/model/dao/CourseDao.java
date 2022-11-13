@@ -8,7 +8,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import com.jdc.registration.model.AppDataValidationException;
+import com.jdc.registration.AppDataValidationException;
+import com.jdc.registration.model.CourseRepo;
 import com.jdc.registration.model.dto.Course;
 import com.jdc.registration.model.dto.Course.Level;
 
