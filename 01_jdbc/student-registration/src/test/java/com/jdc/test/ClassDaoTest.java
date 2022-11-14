@@ -9,13 +9,13 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.Date;
-
 import javax.sql.DataSource;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -25,8 +25,10 @@ import com.jdc.registration.DataSourceManager;
 import com.jdc.registration.model.ClassesRepo;
 import com.jdc.registration.model.dao.ClassesDao;
 import com.jdc.registration.model.form.ClassesForm;
+import com.jdc.test.utils.DateUtils;
 import com.jdc.test.utils.DbUtils;
 
+@TestMethodOrder(OrderAnnotation.class)
 public class ClassDaoTest {
 
 	ClassesRepo repository;
@@ -72,8 +74,8 @@ public class ClassDaoTest {
 	@Order(1)
 	@ParameterizedTest
 	@CsvFileSource(delimiter = '\t', resources = "/classes/test_validation.txt")
-	void test_validation(int courseId, int teacherId, Date startDate, boolean deleted, String message) {
-		var form = new ClassesForm(courseId, teacherId, startDate, deleted);
+	void test_validation(int courseId, int teacherId, String startDate, boolean deleted, String message) {
+		var form = new ClassesForm(courseId, teacherId, DateUtils.parse(startDate), deleted);
 		
 		var exception = assertThrows(AppDataValidationException.class, () -> repository.save(form));
 		
@@ -88,8 +90,8 @@ public class ClassDaoTest {
 	@Order(2)
 	@ParameterizedTest
 	@CsvFileSource(delimiter = '\t', resources = "/classes/test_insert.txt")
-	void test_insert(int id, int courseId, String courseName, int teacherId, String teacherName, Date startDate, boolean deleted) {
-		var form = new ClassesForm(courseId, teacherId, startDate, deleted);
+	void test_insert(int id, int courseId, String courseName, int teacherId, String teacherName, String startDate, boolean deleted) {
+		var form = new ClassesForm(courseId, teacherId, DateUtils.parse(startDate), deleted);
 		
 		var insertResult = repository.save(form);
 		assertThat(insertResult, is(id));
@@ -97,7 +99,7 @@ public class ClassDaoTest {
 		var dto = repository.findById(id);
 		assertThat(dto, allOf(
 				hasProperty("id", is(id)),
-				hasProperty("startDate", is(startDate)),
+				hasProperty("startDate", is(DateUtils.parse(startDate))),
 				hasProperty("deleted", is(deleted)),
 				hasProperty("teacher", allOf(
 						notNullValue(),
@@ -115,8 +117,8 @@ public class ClassDaoTest {
 	@Order(3)
 	@ParameterizedTest
 	@CsvFileSource(delimiter = '\t', resources = "/classes/test_update.txt")
-	void test_update(int id, int courseId, String courseName, int teacherId, String teacherName, Date startDate, boolean deleted) {
-		var form = new ClassesForm(id, courseId, teacherId, startDate, deleted);
+	void test_update(int id, int courseId, String courseName, int teacherId, String teacherName, String startDate, boolean deleted) {
+		var form = new ClassesForm(id, courseId, teacherId, DateUtils.parse(startDate), deleted);
 		
 		var insertResult = repository.save(form);
 		assertThat(insertResult, is(id));
@@ -124,7 +126,7 @@ public class ClassDaoTest {
 		var dto = repository.findById(id);
 		assertThat(dto, allOf(
 				hasProperty("id", is(id)),
-				hasProperty("startDate", is(startDate)),
+				hasProperty("startDate", is(DateUtils.parse(startDate))),
 				hasProperty("deleted", is(deleted)),
 				hasProperty("teacher", allOf(
 						notNullValue(),
@@ -142,20 +144,22 @@ public class ClassDaoTest {
 	@Order(4)
 	@ParameterizedTest
 	@CsvFileSource(delimiter = '\t', resources = "/classes/test_find_by_id.txt")
-	void test_find_by_id(int courseId, int teacherId, Date startDate, boolean deleted, int id) {
+	void test_find_by_id(int id, int courseId, String course, int teacherId, String teacher, String startDate, boolean deleted) {
 		var result = repository.findById(id);
 		
 		assertThat(result, allOf(
 				hasProperty("id", is(id)),
-				hasProperty("startDate", is(startDate)),
+				hasProperty("startDate", is(DateUtils.parse(startDate))),
 				hasProperty("deleted", is(deleted)),
 				hasProperty("teacher", allOf(
 						notNullValue(),
-						hasProperty("id", is(teacherId))
+						hasProperty("id", is(teacherId)),
+						hasProperty("name", is(teacher))
 						)),
 				hasProperty("course", allOf(
 						notNullValue(),
-						hasProperty("id", is(courseId))
+						hasProperty("id", is(courseId)),
+						hasProperty("name", is(course))
 						))
 				));
 	}
@@ -174,15 +178,15 @@ public class ClassDaoTest {
 	void test_delete(int id) {
 		repository.delete(id);
 		var result = repository.findById(id);
-		assertThat(result, hasProperty("deleted", is(false)));
+		assertThat(result, hasProperty("deleted", is(true)));
 	}
 	
 	@Order(7)
 	@ParameterizedTest
 	@CsvFileSource(delimiter = '\t', resources = "/classes/test_search.txt")
-	void test_search(String teacherName, String courseName, Date from, Date to, Boolean deleted, int size) {
+	void test_search(String teacherName, String courseName, String from, String to, Boolean deleted, int size) {
 		
-		var result = repository.search(teacherName, courseName, from, to, deleted);
+		var result = repository.search(teacherName, courseName, DateUtils.parse(from), DateUtils.parse(to), deleted);
 		
 		assertThat(result, hasSize(size));
 	}

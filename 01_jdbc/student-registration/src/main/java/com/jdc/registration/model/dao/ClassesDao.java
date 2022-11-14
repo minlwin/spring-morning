@@ -210,7 +210,7 @@ public class ClassesDao implements ClassesRepo{
 		data.setDeleted(rs.getBoolean(3));
 		
 		var teacher = new Teacher();
-		teacher.setId(4);
+		teacher.setId(rs.getInt(4));
 		teacher.setName(rs.getString(5));
 		data.setTeacher(teacher);
 		
