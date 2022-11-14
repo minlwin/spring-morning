@@ -2,6 +2,7 @@ package com.jdc.registration.model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,8 +45,7 @@ public class ClassesDao implements ClassesRepo{
 				select cl.id, cl.start_date, cl.deleted, t.id, t.name, 
 				c.id, c.name, c.level, c.duration, c.fees, c.description, c.deleted
 				from classes cl join course c on cl.course_id = c.id join teacher t on cl.teacher_id = t.id 
-				where cl.id = ?
-				""";
+				where cl.id = ?""";
 		
 		try(var conn = dataSource.getConnection();
 				var stmt = conn.prepareStatement(sql)) {
@@ -95,23 +95,28 @@ public class ClassesDao implements ClassesRepo{
 		var result = new ArrayList<Classes>();
 		
 		if(null != teacherName && !teacherName.isEmpty()) {
-			
+			sql.append(" and lower(t.name) like ?");
+			params.add(teacherName.toLowerCase().concat("%"));
 		}
 
 		if(null != courseName && !courseName.isEmpty()) {
-			
+			sql.append(" and lower(c.name) like ?");
+			params.add(courseName.toLowerCase().concat("%"));
 		}
 		
 		if(null != from) {
-			
+			sql.append(" and cl.start_date >= ?");
+			params.add(new java.sql.Date(from.getTime()));
 		}
 		
 		if(null != to) {
-			
+			sql.append(" and cl.start_date <= ?");
+			params.add(new java.sql.Date(to.getTime()));
 		}
 
 		if(null != deleted) {
-			
+			sql.append(" and cl.deleted = ?");
+			params.add(deleted);
 		}
 
 		try (var conn = dataSource.getConnection(); 
@@ -136,17 +141,64 @@ public class ClassesDao implements ClassesRepo{
 	}
 
 	private void validate(ClassesForm dto) {
-		// TODO Auto-generated method stub
 		
+		if(null == dto.getStartDate()) {
+			throw new AppDataValidationException("Please enter start date.");
+		}
+		
+		if(dto.getCourseId() == 0) {
+			throw new AppDataValidationException("Please select course.");
+		}
+		
+		if(dto.getTeacherId() == 0) {
+			throw new AppDataValidationException("Please select teacher.");
+		}
 	}
 	
 	private int update(ClassesForm dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		var sql = "update classes set start_date = ?, course_id = ?, teacher_id = ?, deleted = ? where id = ?";
+		
+		try (var conn = dataSource.getConnection(); 
+				var stmt = conn.prepareStatement(sql.toString())) {
+			
+			stmt.setDate(1, new java.sql.Date(dto.getStartDate().getTime()));
+			stmt.setInt(2, dto.getCourseId());
+			stmt.setInt(3, dto.getTeacherId());
+			stmt.setBoolean(4, dto.isDeleted());
+			stmt.setInt(5, dto.getId());
+			
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new AppDataValidationException(e.getMessage(), e);
+		}
+
+		return dto.getId();
 	}
 
 	private int create(ClassesForm dto) {
-		// TODO Auto-generated method stub
+		var sql = "insert into classes(start_date, course_id, teacher_id, deleted) values (?, ?, ?, ?)";
+		
+		try (var conn = dataSource.getConnection(); 
+				var stmt = conn.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS)) {
+			
+			stmt.setDate(1, new java.sql.Date(dto.getStartDate().getTime()));
+			stmt.setInt(2, dto.getCourseId());
+			stmt.setInt(3, dto.getTeacherId());
+			stmt.setBoolean(4, dto.isDeleted());
+			
+			stmt.executeUpdate();
+			
+			var rs = stmt.getGeneratedKeys();
+			
+			while(rs.next()) {
+				return rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			throw new AppDataValidationException(e.getMessage(), e);
+		}
 		return 0;
 	}
 	
