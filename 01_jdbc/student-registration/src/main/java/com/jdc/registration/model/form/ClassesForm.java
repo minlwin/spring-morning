@@ -10,6 +10,26 @@ public class ClassesForm {
 	private Date startDate;
 	private boolean deleted;
 
+	public ClassesForm() {
+	}
+
+	public ClassesForm(int courseId, int teacherId, Date startDate, boolean deleted) {
+		super();
+		this.courseId = courseId;
+		this.teacherId = teacherId;
+		this.startDate = startDate;
+		this.deleted = deleted;
+	}
+
+	public ClassesForm(int id, int courseId, int teacherId, Date startDate, boolean deleted) {
+		super();
+		this.id = id;
+		this.courseId = courseId;
+		this.teacherId = teacherId;
+		this.startDate = startDate;
+		this.deleted = deleted;
+	}
+
 	public int getId() {
 		return id;
 	}
