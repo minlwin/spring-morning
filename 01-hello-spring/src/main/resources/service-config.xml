@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean name="service1,service2"
+		class="com.jdc.morning.service.Service" 
+		p:serviceNumber="1" p:type="Default" >
+	</bean>
+	
+	<bean id="messageFactory" 
+		class="com.jdc.morning.factory.ServiceFactory" 
+		p:type="Message" >
+	</bean>
+	
+	<bean id="messageService1" 
+	 	factory-bean="messageFactory" 
+	 	factory-method="generate"></bean>
+	
+	<bean id="messageService2" 
+	 	factory-bean="messageFactory" lazy-init="true" 
+	 	factory-method="generate"></bean>
+</beans>

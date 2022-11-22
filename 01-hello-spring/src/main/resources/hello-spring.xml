@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean class="com.jdc.morning.MyFirstBean"></bean>
+	
+	<bean class="java.lang.StringBuilder"></bean>
+	
+	<util:list id="nameList" list-class="java.util.ArrayList"
+		value-type="java.lang.String">
+
+		<value>Hello</value>
+		<value>Spring Framework</value>
+	</util:list>
+	
+	<context:component-scan base-package="com.jdc.morning"></context:component-scan>
+</beans>
