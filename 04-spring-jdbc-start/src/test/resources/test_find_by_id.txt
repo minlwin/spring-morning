@@ -1,0 +1,4 @@
+1,Java Basic,1,3,300000,Entrance Java Course,false
+2,Jakarta EE,2,5,500000,Enterprise Java Course,true
+3,Spring Framework,2,5,500000,Enterprise Java Course,false
+4,Flutter,1,3,300000,Mobile Development Course,false
