@@ -1,0 +1,2 @@
+5,Kotlin Basic,1,3,300000,Entrance Kotlin Course,false
+5,Adroid with Kotlin,2,4,400000,Advance Android Course,false

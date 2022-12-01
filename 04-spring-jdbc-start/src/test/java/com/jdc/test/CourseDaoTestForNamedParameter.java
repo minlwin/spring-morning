@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -22,10 +23,10 @@ import com.jdc.demo.dto.Course;
 @SpringJUnitConfig(locations = "classpath:/db-config.xml")
 @Sql(scripts = "/course-data.sql")
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
-public class CourseDaoTest {
+public class CourseDaoTestForNamedParameter {
 
 	@Autowired
-	@Qualifier("usingJdbcTemplate")
+	@Qualifier("usingNamedParameter")
 	private CourseDao dao;
 	
 	@Order(1)
@@ -104,5 +105,12 @@ public class CourseDaoTest {
 	void test_insert(int id, String name, int level, int duration, int fees, String description, boolean deleted) {
 		var result = dao.insert(new Course(0, name, level, duration, fees, description, deleted));
 		assertEquals(id, result);
+	}
+	
+	@Order(7)
+	@Test
+	void test_get_all() {
+		var result = dao.getAll();
+		assertEquals(4, result.size());
 	}
 }
