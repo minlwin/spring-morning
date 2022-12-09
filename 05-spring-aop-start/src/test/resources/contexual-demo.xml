@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<context:component-scan base-package="com.jdc.demo"></context:component-scan>
+	<aop:config proxy-target-class="true">
+	
+		<aop:pointcut expression="bean(accountDao)" id="accountDaoBean"/>
+		
+		<aop:pointcut expression="@annotation(com.jdc.demo.NeedToLogBefore)" id="needToLogBefore"/>
+		
+		<aop:pointcut expression="@args(com.jdc.demo.Dto)" id="argsWithDto"/>
+	
+		<aop:pointcut id="proxyForAccountDao" 
+			expression="this(com.jdc.demo.BaseDao)" />
+			
+		<aop:pointcut expression="@within(org.springframework.stereotype.Service)" 
+			id="serviceClasses"/>	
+	
+		<aop:pointcut expression="@within(org.springframework.stereotype.Repository)" 
+			id="repositoryClasses"/>	
+
+		<aop:pointcut id="targetForAccountDao" 
+			expression="target(com.jdc.demo.dao.AccountDao)" />
+		
+		<aop:pointcut expression="args(int)" id="oneIntegerArgumentMethod"/>
+		
+		<aop:pointcut expression="execution(* find*(..))" id="findMethods"/>
+		
+		<aop:pointcut expression="@within(org.springframework.stereotype.Repository) and execution(* find*(..)) " 
+			id="findMethodsInDaoClasses"/>
+
+		<aop:aspect ref="contexualAspect">
+		
+			<aop:pointcut expression="within(com.jdc..*Dao)" id="withinDao"/>
+			
+			<aop:before method="beforeTarget" pointcut-ref="needToLogBefore"/>
+			
+			<aop:after-returning method="getReturnValue" pointcut="execution(int *(..)) and args(input)" arg-names="input,output" returning="output"/>
+		</aop:aspect>
+		
+	</aop:config>
+</beans>

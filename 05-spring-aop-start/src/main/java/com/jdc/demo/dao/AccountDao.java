@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.jdc.demo.controller.BaseDao;
+import com.jdc.demo.BaseDao;
+import com.jdc.demo.NeedToLogBefore;
 import com.jdc.demo.dao.dto.Account;
 
 @Repository
@@ -24,9 +25,10 @@ public class AccountDao implements BaseDao<Account>{
 		
 	}
 
+	@NeedToLogBefore
 	@Override
 	public Account findById(int id) {
-		// TODO Auto-generated method stub
+		System.out.println("Find By Id Method of Account Dao Class");
 		return null;
 	}
 

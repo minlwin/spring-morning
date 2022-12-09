@@ -9,19 +9,25 @@
 
 
 	<context:component-scan base-package="com.jdc.demo"></context:component-scan>
+	
 	<aop:config proxy-target-class="true">
+		
 		<aop:aspect ref="loggerAspect">
 				
-		<aop:before method="beforeExecution"
-			pointcut="bean(registrationService)" />
-		<aop:after method="afterExecution"
-			pointcut="@within(org.springframework.stereotype.Repository)" />
-		<aop:after-throwing method="afterThrowing"
-			pointcut="bean(registrationDao)" />
-		<aop:around method="aroundInvoke"
-			pointcut="bean(registrationDao)" />
-		<aop:after-returning method="afterReturning"
-			pointcut="bean(classesDao)" />
+			<aop:before method="beforeExecution"
+				pointcut="bean(registrationService)" />
+				
+			<aop:after-returning method="afterReturning"
+				pointcut="bean(classesDao)" />
+
+			<aop:after-throwing method="afterThrowing"
+				pointcut="bean(registrationDao)" />
+				
+			<aop:after method="afterExecution"
+				pointcut="@within(org.springframework.stereotype.Repository)" />
+				
+			<aop:around method="aroundInvoke"
+				pointcut="bean(registrationDao)" />
 		</aop:aspect>
 	</aop:config>
 </beans>

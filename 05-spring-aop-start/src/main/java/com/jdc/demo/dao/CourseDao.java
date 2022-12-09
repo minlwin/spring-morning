@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.jdc.demo.controller.BaseDao;
+import com.jdc.demo.BaseDao;
 import com.jdc.demo.dao.dto.Course;
 
 @Repository

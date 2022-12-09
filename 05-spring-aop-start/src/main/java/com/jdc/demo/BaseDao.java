@@ -1,4 +1,4 @@
-package com.jdc.demo.controller;
+package com.jdc.demo;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.jdc.demo.controller.BaseDao;
+import com.jdc.demo.BaseDao;
 import com.jdc.demo.dao.dto.Account;
 import com.jdc.demo.dao.dto.Classes;
 import com.jdc.demo.dao.dto.Registration;
