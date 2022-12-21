@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Service;
 
 import com.jdc.demo.dto.Member;
+import com.jdc.demo.utils.Loggable;
 
 @Service
 public class MemberService {
@@ -18,6 +19,7 @@ public class MemberService {
 		insert.setTableName("member");
 	}
 
+	@Loggable
 	public int create(Member member) {
 		return insert.execute(new BeanPropertySqlParameterSource(member));
 	}

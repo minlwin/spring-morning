@@ -19,7 +19,14 @@
 			location="classpath:/database.sql" />
 	</jdbc:embedded-database>
 	
+	<bean id="loggableAdvice" class="com.jdc.demo.utils.MethodLogger"></bean>
+	
 	<aop:config>
+		
+		<aop:pointcut expression="@annotation(com.jdc.demo.utils.Loggable)" id="loggableMethods"/>
+		
+		<aop:advisor advice-ref="loggableAdvice" pointcut-ref="loggableMethods"/>
+		
 		<aop:aspect ref="applicationAspects">
 			<aop:after-returning method="afterReturningInsert" 
 				pointcut="within(com.jdc..*Service) and args(input)" 

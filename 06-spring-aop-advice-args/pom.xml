@@ -12,7 +12,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>6.0.3</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
