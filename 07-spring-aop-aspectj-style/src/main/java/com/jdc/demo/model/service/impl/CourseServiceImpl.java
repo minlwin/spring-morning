@@ -37,8 +37,7 @@ public class CourseServiceImpl implements CourseService{
 		params.put("duration", c.duration());
 		params.put("fees", c.fees());
 		
-		return insert.execute(
-				params);
+		return insert.execute(params);
 	}
 
 	private int update(Course c) {
