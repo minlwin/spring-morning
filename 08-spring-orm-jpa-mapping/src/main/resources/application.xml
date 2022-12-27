@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	<context:component-scan base-package="com.jdc.demo" />
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- Data Source -->
+	<bean id="dsConfig" class="com.zaxxer.hikari.HikariConfig"
+		p:jdbcUrl="jdbc:mysql://localhost:3306/jpademo" p:username="jpademo" p:password="jpademo" />
+		
+	
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+		<constructor-arg ref="dsConfig"></constructor-arg>
+	</bean>
+	
+	<!-- Entity Manager Factory Bean for JPA -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		p:dataSource-ref="dataSource" p:packagesToScan="com.jdc.demo.entity" 
+		p:jpaVendorAdapter-ref="hibernateVendorAdapter" p:jpaProperties-ref="jpaProperties" />
+		
+	<bean id="hibernateVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+
+	<util:properties id="jpaProperties">
+		<prop key="hibernate.show_sql">true</prop>	
+		<prop key="hibernate.format_sql">true</prop>
+	</util:properties>
+
+	<!-- Spring Transaction -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager" 
+		p:entityManagerFactory-ref="entityManagerFactory" />
+
+</beans>
