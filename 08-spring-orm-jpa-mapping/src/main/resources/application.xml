@@ -32,6 +32,7 @@
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 
 	<util:properties id="jpaProperties">
+		<prop key="hibernate.hbm2ddl.auto">create</prop>
 		<prop key="hibernate.show_sql">true</prop>	
 		<prop key="hibernate.format_sql">true</prop>
 	</util:properties>
