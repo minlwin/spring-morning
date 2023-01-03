@@ -9,10 +9,10 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.persistence.TableGenerator;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
@@ -22,7 +22,8 @@ import jakarta.persistence.Transient;
 public class Member {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(generator = "member_id_gen")
+	@TableGenerator(name = "member_id_gen")
 	private int id;
 	private String name;
 	@Column(name = "phone_num")
@@ -40,9 +41,11 @@ public class Member {
 
 	@Lob
 	private String introduction;
-	
+
 	@Transient
 	private boolean deleted;
+
+	private SecurityInfo security;
 
 	public enum Role {
 		Admin, Member
@@ -56,6 +59,14 @@ public class Member {
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
+	}
+
+	public SecurityInfo getSecurity() {
+		return security;
+	}
+
+	public void setSecurity(SecurityInfo security) {
+		this.security = security;
 	}
 
 	public String getIntroduction() {

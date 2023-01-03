@@ -1,8 +1,7 @@
 package com.jdc.demo.entity;
 
-import java.util.Date;
-
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -17,11 +16,17 @@ public class Post {
 	private String title;
 	@Column(nullable = false)
 	private String body;
-	@Column(name = "creation")
-	private Date createDate;
-	@Column(name = "modification")
-	private Date updateDate;
 
+	@Embedded
+	private SecurityInfo security;
+
+	public SecurityInfo getSecurity() {
+		return security;
+	}
+
+	public void setSecurity(SecurityInfo security) {
+		this.security = security;
+	}
 
 	public PostPK getId() {
 		return id;
@@ -45,22 +50,6 @@ public class Post {
 
 	public void setBody(String body) {
 		this.body = body;
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public Date getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
 	}
 
 }
