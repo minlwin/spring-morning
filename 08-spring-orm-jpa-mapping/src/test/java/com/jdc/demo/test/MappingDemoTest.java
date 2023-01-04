@@ -11,7 +11,11 @@ import com.jdc.demo.entity.Member;
 import com.jdc.demo.repo.MemberRepo;
 
 @SpringJUnitConfig(locations = "classpath:/application.xml")
-@Sql(statements = "truncate table jpamember")
+@Sql(statements = {
+		"set foreign_key_checks = 0",
+		"truncate table jpamember",
+		"set foreign_key_checks = 1",
+})
 public class MappingDemoTest {
 
 	@Autowired
