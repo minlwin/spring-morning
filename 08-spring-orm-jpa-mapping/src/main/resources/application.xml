@@ -14,13 +14,9 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<!-- Data Source -->
-	<bean id="dsConfig" class="com.zaxxer.hikari.HikariConfig"
-		p:jdbcUrl="jdbc:mysql://localhost:3306/jpademo" p:username="jpademo" p:password="jpademo" />
-		
-	
-	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
-		<constructor-arg ref="dsConfig"></constructor-arg>
-	</bean>
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" 
+		p:jdbcUrl="jdbc:mysql://localhost:3306/jpademo" 
+		p:username="jpademo" p:password="jpademo" />
 	
 	<!-- Entity Manager Factory Bean for JPA -->
 	<bean id="entityManagerFactory"
