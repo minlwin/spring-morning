@@ -11,6 +11,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.SecondaryTable;
+import jakarta.persistence.SecondaryTables;
 import jakarta.persistence.Table;
 import jakarta.persistence.TableGenerator;
 import jakarta.persistence.Temporal;
@@ -19,6 +21,10 @@ import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "jpamember")
+@SecondaryTables({
+	@SecondaryTable(name = "account"),
+	@SecondaryTable(name = "contact")
+})
 public class Member {
 
 	@Id
@@ -26,12 +32,21 @@ public class Member {
 	@TableGenerator(name = "member_id_gen")
 	private int id;
 	private String name;
-	@Column(name = "phone_num")
+	
+	@Column(table = "contact", name = "phone_num")
 	private String phone;
 
+	@Column(table = "contact")
 	@Basic(fetch = FetchType.LAZY)
 	private String email;
 
+	
+	@Column(table = "account", name = "login_id")
+	private String loginId;
+	@Column(table = "account")
+	private String password;
+	
+	@Column(table = "account")
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
@@ -131,6 +146,22 @@ public class Member {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public String getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
