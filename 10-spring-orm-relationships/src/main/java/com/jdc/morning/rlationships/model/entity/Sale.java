@@ -23,9 +23,10 @@ public class Sale {
 	private LocalDateTime saleTime;
 	
 	@ManyToOne
+	@JoinColumn(name = "account_id")
 	private Account customer;
 	
-	@OneToMany
-	@JoinColumn(name = "sale_id")
+	@OneToMany(mappedBy = "sale")
 	private List<SaleDetails> details;
+	
 }

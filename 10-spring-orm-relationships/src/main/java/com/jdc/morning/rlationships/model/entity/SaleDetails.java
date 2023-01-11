@@ -22,4 +22,6 @@ public class SaleDetails {
 	private Product product;
 	private Integer quentity;
 	
+	@ManyToOne
+	private Sale sale;
 }
