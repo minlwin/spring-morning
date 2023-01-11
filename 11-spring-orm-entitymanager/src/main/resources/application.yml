@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/salesdb
+    username: salesdb
+    password: salesdb
+  jpa:
+    properties:
+      jakarta:
+        persistence:
+          schema-generation:
+            database:
+              action: drop-and-create
+      hibernate:
+        '[show_sql]': true
+        '[format_sql]': true
