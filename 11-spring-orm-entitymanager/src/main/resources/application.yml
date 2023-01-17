@@ -5,11 +5,8 @@ spring:
     password: salesdb
   jpa:
     properties:
-      jakarta:
-        persistence:
-          schema-generation:
-            database:
-              action: drop-and-create
       hibernate:
         '[show_sql]': true
         '[format_sql]': true
+    hibernate:
+      ddl-auto: create
