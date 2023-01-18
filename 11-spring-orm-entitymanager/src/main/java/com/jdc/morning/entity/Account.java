@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PostLoad;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -33,5 +34,10 @@ public class Account {
 	
 	public enum Role {
 		Admin, Member
+	}
+	
+	@PostLoad
+	void postLoad() {
+		System.out.println("Post Load Event");
 	}
 }
