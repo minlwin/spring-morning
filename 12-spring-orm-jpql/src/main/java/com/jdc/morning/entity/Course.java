@@ -10,21 +10,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedNativeQuery;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.NamedStoredProcedureQuery;
+import jakarta.persistence.ParameterMode;
 import jakarta.persistence.SqlResultSetMapping;
+import jakarta.persistence.StoredProcedureParameter;
 import lombok.Data;
 
 @Data
 @Entity
-@NamedQuery(
-		name = "Course.searchForList", 
-		query = """
-				select new com.jdc.morning.dto.CourseIdWithName(c.id, c.name, c.level) 
-				from Course c where c.level = :level""")
-
-@NamedNativeQuery(
-		name = "Course.nativeFindByLevel",
-		query = "select * from course where level = ?1",
-		resultClass = Course.class)
 
 @SqlResultSetMapping(
 		name = "Course.nativeFindByLevelForListResult",
@@ -36,10 +29,28 @@ import lombok.Data;
 					@ColumnResult(name = "level"),
 				}
 		))
+
+@NamedQuery(
+		name = "Course.searchForList", 
+		query = """
+				select new com.jdc.morning.dto.CourseIdWithName(c.id, c.name, c.level) 
+				from Course c where c.level = :level""")
+@NamedNativeQuery(
+		name = "Course.nativeFindByLevel",
+		query = "select * from course where level = ?1",
+		resultClass = Course.class)
 @NamedNativeQuery(
 		name = "Course.native.findByLevelForList",
 		query = "select id, name, level from course where level = ?1",
 		resultSetMapping = "Course.native.findByLevelForListResult"
+)
+@NamedStoredProcedureQuery(
+		name = "Course.store.findByLevel",
+		procedureName = "find_by_level",
+		parameters = {
+			@StoredProcedureParameter(mode = ParameterMode.IN, name = "level_in", type = Integer.class)
+		},
+		resultClasses = Course.class
 )
 public class Course {
 
