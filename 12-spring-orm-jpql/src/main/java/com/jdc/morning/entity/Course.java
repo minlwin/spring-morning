@@ -35,14 +35,15 @@ import lombok.Data;
 		query = """
 				select new com.jdc.morning.dto.CourseIdWithName(c.id, c.name, c.level) 
 				from Course c where c.level = :level""")
+
 @NamedNativeQuery(
 		name = "Course.nativeFindByLevel",
-		query = "select * from course where level = ?1",
+		query = "select * from course where level = :level",
 		resultClass = Course.class)
 @NamedNativeQuery(
 		name = "Course.native.findByLevelForList",
-		query = "select id, name, level from course where level = ?1",
-		resultSetMapping = "Course.native.findByLevelForListResult"
+		query = "select id, name, level from course where level = :level",
+		resultSetMapping = "Course.nativeFindByLevelForListResult"
 )
 @NamedStoredProcedureQuery(
 		name = "Course.store.findByLevel",
