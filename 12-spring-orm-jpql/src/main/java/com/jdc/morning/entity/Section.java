@@ -3,6 +3,7 @@ package com.jdc.morning.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +26,9 @@ public class Section {
 	@OneToMany(mappedBy = "section")
 	private List<Registration> registration;
 	
+	@Column(name = "start_at")
 	private LocalDate startDate;
 	private String room;
+	@Column(name = "max_seats")
 	private Integer maxStudents;
 }

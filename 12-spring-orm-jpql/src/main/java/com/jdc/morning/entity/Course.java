@@ -2,6 +2,7 @@ package com.jdc.morning.entity;
 
 import com.jdc.morning.dto.CourseIdWithName;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.ColumnResult;
 import jakarta.persistence.ConstructorResult;
 import jakarta.persistence.Entity;
@@ -58,6 +59,7 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(nullable = false, unique = true)
 	private String name;
 	private Level level;
 	private String description;
