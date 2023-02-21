@@ -13,36 +13,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jdc.spring.model.dto.AccountDto;
-import com.jdc.spring.model.entity.Account.Role;
-import com.jdc.spring.model.form.AccountForm;
-import com.jdc.spring.model.form.AccountUpdateForm;
-import com.jdc.spring.model.service.AccountService;
+import com.jdc.spring.model.dto.ProductDto;
+import com.jdc.spring.model.form.ProductForm;
+import com.jdc.spring.model.service.ProductService;
 
 @RestController
-@RequestMapping("account")
-public class AccountApi {
+@RequestMapping("product")
+public class ProductApi {
 	
 	@Autowired
-	private AccountService service;
+	private ProductService service;
 
 	@GetMapping
-	List<AccountDto> search(@RequestParam Optional<Role> role) {
-		return service.search(role);
+	List<ProductDto> search(
+			@RequestParam Optional<Integer> category, 
+			@RequestParam Optional<String> name) {
+		return service.search(category, name);
 	}
 	
 	@GetMapping("{id}")
-	AccountDto findById(@PathVariable int id) {
+	ProductDto findById(@PathVariable int id) {
 		return service.findById(id);
 	}
 	
 	@PostMapping
-	AccountDto create(@RequestBody AccountForm form) {
+	ProductDto create(@RequestBody ProductForm form) {
 		return service.create(form);
 	}
 	
 	@PutMapping("{id}")
-	AccountDto update(@PathVariable int id, @RequestBody AccountUpdateForm form) {
+	ProductDto update(@PathVariable int id, @RequestBody ProductForm form) {
 		return service.update(id, form);
 	}
 }

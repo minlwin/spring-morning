@@ -13,36 +13,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jdc.spring.model.dto.AccountDto;
-import com.jdc.spring.model.entity.Account.Role;
-import com.jdc.spring.model.form.AccountForm;
-import com.jdc.spring.model.form.AccountUpdateForm;
-import com.jdc.spring.model.service.AccountService;
+import com.jdc.spring.model.dto.CategoryDto;
+import com.jdc.spring.model.form.CategoryForm;
+import com.jdc.spring.model.service.CategoryService;
 
 @RestController
-@RequestMapping("account")
-public class AccountApi {
+@RequestMapping("category")
+public class CategoryApi {
 	
 	@Autowired
-	private AccountService service;
-
+	private CategoryService service;
+	
 	@GetMapping
-	List<AccountDto> search(@RequestParam Optional<Role> role) {
-		return service.search(role);
+	List<CategoryDto> search(@RequestParam Optional<String> name) {
+		return service.search(name);
 	}
 	
 	@GetMapping("{id}")
-	AccountDto findById(@PathVariable int id) {
+	CategoryDto findById(@PathVariable int id) {
 		return service.findById(id);
 	}
-	
+
 	@PostMapping
-	AccountDto create(@RequestBody AccountForm form) {
+	CategoryDto create(@RequestBody CategoryForm form) {
 		return service.create(form);
 	}
 	
 	@PutMapping("{id}")
-	AccountDto update(@PathVariable int id, @RequestBody AccountUpdateForm form) {
+	CategoryDto update(@PathVariable int id, @RequestBody CategoryForm form) {
 		return service.update(id, form);
 	}
+	
 }
