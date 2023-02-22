@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.jdc.spring.model.dto.CategoryDto;
 import com.jdc.spring.model.entity.Category;
@@ -20,8 +22,12 @@ public class CategoryService {
 	private CategoryRepo repo;
 
 	public List<CategoryDto> search(Optional<String> name) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.findBy(whichName(name), query -> query.as(CategoryDto.class).all());
+	}
+	
+	private Specification<Category> whichName(Optional<String> name) {
+		return name.filter(a -> StringUtils.hasLength(a)).isEmpty() ? Specification.where(null) : 
+			(root, query, cb) -> cb.like(cb.lower(root.get("name")), name.get().toLowerCase().concat("%"));
 	}
 
 	public CategoryDto findById(int id) {
@@ -40,6 +46,7 @@ public class CategoryService {
 	public CategoryDto update(int id, CategoryForm form) {
 		var entity = repo.findById(id).orElseThrow();
 		entity.setName(form.name());
+		repo.save(entity);
 		return repo.findOneById(id);
 	}
 

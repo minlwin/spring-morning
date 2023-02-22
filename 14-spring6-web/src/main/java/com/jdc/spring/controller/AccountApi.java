@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jdc.spring.controller.advice.ValidationErrorException;
 import com.jdc.spring.model.dto.AccountDto;
 import com.jdc.spring.model.entity.Account.Role;
 import com.jdc.spring.model.form.AccountForm;
@@ -37,7 +40,12 @@ public class AccountApi {
 	}
 	
 	@PostMapping
-	AccountDto create(@RequestBody AccountForm form) {
+	AccountDto create(@Validated @RequestBody AccountForm form, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			throw new ValidationErrorException(result.getFieldErrors());
+		}
+		
 		return service.create(form);
 	}
 	

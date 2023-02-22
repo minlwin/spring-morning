@@ -49,6 +49,8 @@ public class AccountService {
 		entity.setRole(form.role());
 		entity.setName(form.name());
 		
+		repo.save(entity);
+		
 		return repo.findOneById(id);
 	}
 
