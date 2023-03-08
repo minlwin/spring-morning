@@ -50,7 +50,12 @@ public class AccountApi {
 	}
 	
 	@PutMapping("{id}")
-	AccountDto update(@PathVariable int id, @RequestBody AccountUpdateForm form) {
+	AccountDto update(@PathVariable int id, @Validated @RequestBody AccountUpdateForm form, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			throw new ValidationErrorException(result.getFieldErrors());
+		}
+
 		return service.update(id, form);
 	}
 }

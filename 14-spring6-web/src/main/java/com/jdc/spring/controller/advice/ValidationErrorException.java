@@ -18,5 +18,9 @@ public class ValidationErrorException extends RuntimeException{
 	public List<FieldError> getErrors() {
 		return errors;
 	}
+	
+	public List<String> getMessages() {
+		return errors.stream().map(e -> e.getDefaultMessage()).toList();
+	}
 
 }

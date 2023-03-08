@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,12 +39,12 @@ public class ProductApi {
 	}
 	
 	@PostMapping
-	ProductDto create(@RequestBody ProductForm form) {
+	ProductDto create(@Validated @RequestBody ProductForm form, BindingResult result) {
 		return service.create(form);
 	}
 	
 	@PutMapping("{id}")
-	ProductDto update(@PathVariable int id, @RequestBody ProductForm form) {
+	ProductDto update(@PathVariable int id, @Validated @RequestBody ProductForm form, BindingResult result) {
 		return service.update(id, form);
 	}
 }

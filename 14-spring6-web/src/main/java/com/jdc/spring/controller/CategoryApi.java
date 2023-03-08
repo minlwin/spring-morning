@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,12 +37,12 @@ public class CategoryApi {
 	}
 
 	@PostMapping
-	CategoryDto create(@RequestBody CategoryForm form) {
+	CategoryDto create(@Validated @RequestBody CategoryForm form, BindingResult result) {
 		return service.create(form);
 	}
 	
 	@PutMapping("{id}")
-	CategoryDto update(@PathVariable int id, @RequestBody CategoryForm form) {
+	CategoryDto update(@PathVariable int id, @Validated @RequestBody CategoryForm form, BindingResult result) {
 		return service.update(id, form);
 	}
 	

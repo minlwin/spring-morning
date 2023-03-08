@@ -1,6 +1,5 @@
 package com.jdc.spring.conf;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -11,14 +10,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
+@EnableWebMvc
 @ComponentScan(basePackages = {
 		"com.jdc.spring.controller",
 		"com.jdc.spring.model.service"
@@ -26,17 +26,8 @@ import jakarta.persistence.EntityManagerFactory;
 @EnableJpaRepositories(
 		basePackages = "com.jdc.spring.model.repo", 
 		transactionManagerRef = "transactionManager")
-public class ApplicationConfig {
+public class ApplicationConfig implements WebMvcConfigurer{
 
-	@Bean
-	RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
-		var adapter = new RequestMappingHandlerAdapter();
-		adapter.setMessageConverters(
-			List.of(new MappingJackson2HttpMessageConverter())	
-		);
-		return adapter;
-	}
-	
 	@Bean
 	DataSource dataSource() {
 		var bean = new BasicDataSource();
