@@ -9,6 +9,7 @@ import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -19,13 +20,14 @@ import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
 @EnableWebMvc
+@EnableAspectJAutoProxy
+@EnableJpaRepositories(
+		basePackages = "com.jdc.spring.model.repo", 
+		transactionManagerRef = "transactionManager")
 @ComponentScan(basePackages = {
 		"com.jdc.spring.controller",
 		"com.jdc.spring.model.service"
 })
-@EnableJpaRepositories(
-		basePackages = "com.jdc.spring.model.repo", 
-		transactionManagerRef = "transactionManager")
 public class ApplicationConfig implements WebMvcConfigurer{
 
 	@Bean

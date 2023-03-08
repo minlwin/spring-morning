@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jdc.spring.controller.advice.ValidationErrorException;
 import com.jdc.spring.model.dto.AccountDto;
 import com.jdc.spring.model.entity.Account.Role;
 import com.jdc.spring.model.form.AccountForm;
@@ -40,22 +39,12 @@ public class AccountApi {
 	}
 	
 	@PostMapping
-	AccountDto create(@Validated @RequestBody AccountForm form, BindingResult result) {
-		
-		if(result.hasErrors()) {
-			throw new ValidationErrorException(result.getFieldErrors());
-		}
-		
+	AccountDto create(@Validated @RequestBody AccountForm form, BindingResult result) {		
 		return service.create(form);
 	}
 	
 	@PutMapping("{id}")
 	AccountDto update(@PathVariable int id, @Validated @RequestBody AccountUpdateForm form, BindingResult result) {
-		
-		if(result.hasErrors()) {
-			throw new ValidationErrorException(result.getFieldErrors());
-		}
-
 		return service.update(id, form);
 	}
 }
