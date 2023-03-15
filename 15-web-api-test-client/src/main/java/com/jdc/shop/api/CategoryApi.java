@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,16 +16,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jdc.shop.model.entity.Category;
-import com.jdc.shop.model.repo.CategoryRepo;
-
-import jakarta.persistence.EntityNotFoundException;
+import com.jdc.shop.model.service.CategoryService;
 
 @RestController
 @RequestMapping("category")
 public class CategoryApi {
 	
 	@Autowired
-	private CategoryRepo repo;
+	private CategoryService repo;
 
 	@GetMapping
 	List<Category> findAll() {
@@ -35,23 +32,20 @@ public class CategoryApi {
 	
 	@GetMapping("{id}")
 	Category findById(@PathVariable int id) {
-		return repo.findById(id).orElseThrow(EntityNotFoundException::new);
+		return repo.findById(id);
 	}
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@Transactional
 	Category create(@Validated @RequestBody Category data, BindingResult result) {
 		return repo.save(data);
 	}
 	
 	@PutMapping("{id}")
 	@ResponseStatus(code = HttpStatus.ACCEPTED)
-	@Transactional
 	Category update(@PathVariable int id, @Validated @RequestBody Category data, BindingResult result) {
-		var entity = repo.findById(id).orElseThrow(EntityNotFoundException::new);
-		entity.setName(data.getName());
-		return entity;
+		data.setId(id);
+		return repo.save(data);
 	}
 	
 }
