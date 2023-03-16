@@ -2,6 +2,7 @@ package com.jdc.shop.test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -29,6 +30,11 @@ import com.jdc.shop.model.entity.Category;
 
 @TestMethodOrder(value = OrderAnnotation.class)
 @SpringJUnitWebConfig(classes = ShopAppWebConfig.class)
+@Sql(statements = {
+		"truncate table category restart identity",
+		"insert into category(name) values ('Foods')",
+		"insert into category(name) values ('Drinks')",
+	})
 public class CategoryApiTest {
 
 	private WebTestClient testClient;
@@ -41,11 +47,6 @@ public class CategoryApiTest {
 	
 	@Order(1)
 	@Test
-	@Sql(statements = {
-		"truncate table category restart identity",
-		"insert into category(name) values ('Foods')",
-		"insert into category(name) values ('Drinks')",
-	})
 	void find_all() {
 		var result = testClient.get().uri("/category")
 				.exchange()
@@ -58,11 +59,6 @@ public class CategoryApiTest {
 	
 	@Order(2)
 	@ParameterizedTest
-	@Sql(statements = {
-			"truncate table category restart identity",
-			"insert into category(name) values ('Foods')",
-			"insert into category(name) values ('Drinks')",
-		})
 	@CsvSource({
 		"1,Foods",
 		"2,Drinks"
@@ -83,11 +79,6 @@ public class CategoryApiTest {
 	
 	@Order(3)
 	@ParameterizedTest
-	@Sql(statements = {
-			"truncate table category restart identity",
-			"insert into category(name) values ('Foods')",
-			"insert into category(name) values ('Drinks')",
-		})
 	@ValueSource(ints = {3, 4})
 	void find_by_id_not_found(int id) {
 		var result = testClient.get().uri("/category/%d".formatted(id))
@@ -99,7 +90,7 @@ public class CategoryApiTest {
 		assertThat(result, allOf(
 				notNullValue(),
 				hasProperty("status", is(Status.Business)),
-				hasProperty("message", is("There is no category with id %d.".formatted(id)))
+				hasProperty("messages", contains("There is no category with id %d.".formatted(id)))
 				));
 	}
 }

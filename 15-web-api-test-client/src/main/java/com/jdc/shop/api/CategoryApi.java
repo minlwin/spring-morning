@@ -23,29 +23,29 @@ import com.jdc.shop.model.service.CategoryService;
 public class CategoryApi {
 	
 	@Autowired
-	private CategoryService repo;
+	private CategoryService service;
 
 	@GetMapping
 	List<Category> findAll() {
-		return repo.findAll();
+		return service.findAll();
 	}
 	
 	@GetMapping("{id}")
 	Category findById(@PathVariable int id) {
-		return repo.findById(id);
+		return service.findById(id);
 	}
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	Category create(@Validated @RequestBody Category data, BindingResult result) {
-		return repo.save(data);
+		return service.save(data);
 	}
 	
 	@PutMapping("{id}")
 	@ResponseStatus(code = HttpStatus.ACCEPTED)
 	Category update(@PathVariable int id, @Validated @RequestBody Category data, BindingResult result) {
 		data.setId(id);
-		return repo.save(data);
+		return service.save(data);
 	}
 	
 }
