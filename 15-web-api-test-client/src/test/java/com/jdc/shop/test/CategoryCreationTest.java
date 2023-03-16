@@ -105,4 +105,51 @@ public class CategoryCreationTest {
 				));
 		
 	}
+	
+	@Test
+	@Sql(statements = {
+			"truncate table category restart identity",
+			"insert into category(name) values ('Foods')",
+			"insert into category(name) values ('Drinks')",
+		})
+	void test_update_error_for_name() {
+		var input = new Category();
+		
+		var result = client.put().uri("/category/1")
+				.bodyValue(input)
+				.exchange()
+				.expectStatus().isBadRequest()
+				.expectBody(Message.class)
+				.returnResult().getResponseBody();
+
+		assertThat(result, allOf(
+				notNullValue(),
+				hasProperty("status", is(Status.Validation)),
+				hasProperty("messages", contains("Please enter category name."))
+				));
+	}
+	
+	@Test
+	@Sql(statements = {
+			"truncate table category restart identity",
+			"insert into category(name) values ('Foods')",
+			"insert into category(name) values ('Drinks')",
+		})
+	void test_update_error_for_id() {
+		var input = new Category();
+		input.setName("Fashion");
+		
+		var result = client.put().uri("/category/3")
+				.bodyValue(input)
+				.exchange()
+				.expectStatus().isNoContent()
+				.expectBody(Message.class)
+				.returnResult().getResponseBody();
+		
+		assertThat(result, allOf(
+				notNullValue(),
+				hasProperty("status", is(Status.Business)),
+				hasProperty("messages", contains("There is no category with id %d.".formatted(3)))
+				));
+	}
 }

@@ -30,5 +30,12 @@ public class CategoryService {
 	public Category save(Category data) {
 		return repo.save(data);
 	}
+	
+	@Transactional
+	public Category save(int id, Category data) {
+		var entity = findById(id);
+		entity.setName(data.getName());
+		return entity;
+	}
 
 }

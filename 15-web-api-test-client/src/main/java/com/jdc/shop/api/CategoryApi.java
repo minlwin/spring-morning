@@ -44,8 +44,7 @@ public class CategoryApi {
 	@PutMapping("{id}")
 	@ResponseStatus(code = HttpStatus.ACCEPTED)
 	Category update(@PathVariable int id, @Validated @RequestBody Category data, BindingResult result) {
-		data.setId(id);
-		return service.save(data);
+		return service.save(id, data);
 	}
 	
 }
