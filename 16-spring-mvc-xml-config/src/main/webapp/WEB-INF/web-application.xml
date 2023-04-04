@@ -18,4 +18,13 @@
 	</mvc:view-resolvers>
 	
 	<mvc:redirect-view-controller redirect-url="/home" path="/" />
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.jdc.demo.controller.interceptors.MyFirstInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
 </beans>
