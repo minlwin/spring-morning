@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,13 +30,45 @@
 				Search
 			</button>
 			
-			<a href="#" class="btn btn-outline-danger">
+			<c:url value="/course/edit" var="addNewCourse"></c:url>
+			<a href="${addNewCourse}" class="btn btn-outline-danger">
 				Add New
 			</a>
 		</div>
 	</form>
 	
 	<!-- Result List -->
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>Id</td>
+				<td>Name</td>
+				<td>Months</td>
+				<td>Fees</td>
+				<td></td>
+			</tr>
+		</thead>
+		
+		<tbody>
+		<c:forEach items="${list}" var="item">
+			<tr>
+				<td>${item.id}</td>
+				<td>${item.name}</td>
+				<td>${item.months}</td>
+				<td>${item.fees}</td>
+				<td>
+					<c:url value="/course/edit" var="editCourse">
+						<c:param name="id" value="${item.id}"></c:param>
+					</c:url>
+					<a href="${editCourse}" class="btn-link">
+						Edit
+					</a>
+				</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+	
+	</table>
 </div>
 
 </body>
