@@ -19,4 +19,9 @@ public class Course {
 	private String name;
 	private int months;
 	private int fees;
+	private Level level;
+	
+	public enum Level {
+		Basic, Intermediate, Advance
+	}
 }

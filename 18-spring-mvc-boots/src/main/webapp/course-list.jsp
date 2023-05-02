@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     
 <!DOCTYPE html>
@@ -7,9 +8,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Courses</title>
-<link rel="stylesheet" href="/resources/style/bootstrap.min.css" />
-<link rel="stylesheet" href="/resources/style/common.css" />
-<script src="/resources/js/bootstrap.bundle.min.js"></script>
+
+<c:url value='/resources/style/bootstrap.min.css' var="bootstrapCss"></c:url>
+<link rel="stylesheet" href="${bootstrapCss}" />
+
+<c:url value="/resources/style/common.css" var="commonCss"></c:url>
+<link rel="stylesheet" href="${commonCss}" />
+
+<c:url value="/resources/js/bootstrap.bundle.min.js" var="bootstrapJs"></c:url>
+<script src="${bootstrapJs}"></script>
+
 </head>
 <body>
 

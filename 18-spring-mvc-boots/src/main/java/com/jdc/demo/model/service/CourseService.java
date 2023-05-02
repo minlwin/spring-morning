@@ -30,4 +30,9 @@ public class CourseService {
 			(root, query, cb) -> cb.like(cb.lower(root.get("name")), name.get().toLowerCase().concat("%"));
 	}
 
+	public void save(Course dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
