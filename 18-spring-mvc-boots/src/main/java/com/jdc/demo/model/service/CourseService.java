@@ -6,11 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jdc.demo.model.entity.Course;
 import com.jdc.demo.model.repo.CourseRepo;
 
 @Service
+@Transactional(readOnly = true)
 public class CourseService {
 	
 	@Autowired
@@ -30,9 +32,9 @@ public class CourseService {
 			(root, query, cb) -> cb.like(cb.lower(root.get("name")), name.get().toLowerCase().concat("%"));
 	}
 
-	public void save(Course dto) {
-		// TODO Auto-generated method stub
-		
+	@Transactional
+	public Course save(Course dto) {
+		return repo.save(dto);
 	}
 
 }

@@ -61,7 +61,10 @@
 		<c:forEach items="${list}" var="item">
 			<tr>
 				<td>${item.id}</td>
-				<td>${item.name}</td>
+				<td>
+					<c:url value="/course/${item.id}" var="detailsLink"></c:url>
+					<a href="${detailsLink}" class="btn-link">${item.name}</a>
+				</td>
 				<td>${item.months}</td>
 				<td>${item.fees}</td>
 				<td>

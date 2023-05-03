@@ -44,24 +44,28 @@
 						<form:option value="">Select Level</form:option>
 						<form:options items="${levels}" />
 					</form:select>
+					<form:errors path="level" cssClass="text-danger"></form:errors>
 				</div>
 	
 				<!-- Name -->
 				<div class="mb-3">
 					<form:label cssClass="form-label" path="name">Course Name</form:label>
 					<form:input path="name" cssClass="form-control" placeholder="Enter Course Name"/>
+					<form:errors path="name" cssClass="text-danger"></form:errors>
 				</div>
 				
 				<!-- Months -->
 				<div class="mb-3">
 					<form:label path="months" cssClass="form-label">Months</form:label>
 					<form:input path="months" cssClass="form-control" type="number"/>
+					<form:errors path="months" cssClass="text-danger"></form:errors>
 				</div>
 				
 				<!-- Fees -->
 				<div class="mb-3">
 					<form:label path="fees" cssClass="form-label">Fees</form:label>
 					<form:input path="fees" cssClass="form-control" type="number"/>
+					<form:errors path="fees" cssClass="text-danger"></form:errors>
 				</div>
 				
 				
