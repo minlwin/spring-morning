@@ -12,6 +12,10 @@
 				<c:url value="/course" var="courseLink"></c:url>
 				<a href="${courseLink}" class="nav-link">Courses</a>
 			</li>
+			<li class="nav-item">
+				<c:url value="/session" var="courseLink"></c:url>
+				<a href="${courseLink}" class="nav-link">Sessions</a>
+			</li>
 		</ul>
 	</div>
 </nav>	
