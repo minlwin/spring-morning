@@ -40,33 +40,37 @@
 				<!-- Course -->
 				<div class="mb-3">
 					<label class="form-label">Course</label>
-					<select name="course" class="form-select">
+					<form:select path="course" cssClass="form-select">
 						<option value="">Select One</option>
-						<c:forEach items="${courses}" var="course">
-							<option value="${course.id}">${course.name}</option>
-						</c:forEach>
-					</select>
+						<form:options items="${courses}" itemLabel="name" itemValue="id"/>						
+					</form:select>
 				</div>
 				
 				<!-- Start Date -->
 				<div class="mb-3">
 					<label class="form-label">Start Date</label>
-					<input type="date" name="startDate" class="form-control" />
+					<form:input type="date" path="startDate" cssClass="form-control"/>
 				</div>
 				
 				<!-- Days -->
+				<div class="mb-3">
+					<label class="form-label">Days</label>
+					<div class="row row-cols-4">
+						<form:checkboxes element="div class='col'" cssClass="me-1" items="${days}" path="days"/>
+					</div>
+				</div>
 				
 				<div class="row mb-3">
 					<!-- Start Time -->
 					<div class="col">
 						<label class="form-label">Start Time</label>
-						<input type="time" name="startTime" class="form-control" />
+						<form:input path="startTime" type="time" cssClass="form-control"/>
 					</div>
 							
 					<!-- End Time -->
 					<div class="col">
 						<label class="form-label">End Time</label>
-						<input type="time" name="endTime" class="form-control" />
+						<form:input path="endTime" type="time" cssClass="form-control"/>
 					</div>
 				</div>
 				
@@ -74,11 +78,13 @@
 				<!-- Seats -->
 				<div class="mb-3">
 					<label class="form-label">Available Seats</label>
-					<input type="number" name="seats" placeholder="Enter Available Seats" class="form-control" />
+					<form:input path="seats" type="number" cssClass="form-control"/>
 				</div>
 				
 				
 				<!-- Save Button -->
+				<button type="reset" class="btn btn-primary me-2">Clear</button>
+				
 				<button type="submit" class="btn btn-primary">Save</button>
 			
 			</form:form>

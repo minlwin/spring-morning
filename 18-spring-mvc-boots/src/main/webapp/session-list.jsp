@@ -92,12 +92,22 @@
 						<tr>
 							<td>${item.id}</td>
 							<td>${item.course.level}</td>
-							<td>${item.course.name}</td>
+							<td>
+								<c:url value="/session/${item.id}" var="detailsLink"></c:url>
+								<a href="${detailsLink}" class="btn-link">
+									${item.course.name}
+								</a>
+							</td>
 							<td>${item.startDate}</td>
 							<td>${item.days}</td>
-							<td>${item.course.duration}</td>
+							<td>${item.course.months}</td>
 							<td>${item.course.fees}</td>
-							<td></td>
+							<td>
+								<c:url value="/session/edit" var="editLink">
+									<c:param name="id" value="${item.id}"></c:param>
+								</c:url>			
+								<a href="${editLink}">Edit</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

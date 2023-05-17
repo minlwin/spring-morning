@@ -1,5 +1,6 @@
 package com.jdc.demo.controller;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -57,6 +58,10 @@ public class SessionController {
 	String edit(ModelMap model) {
 		var courses = courseService.search(Optional.empty());
 		model.put("courses", courses);
+		
+		var days = DayOfWeek.values();
+		model.put("days", days);
+		
 		return "session-edit";
 	}
 	
@@ -81,6 +86,6 @@ public class SessionController {
 	
 	@ModelAttribute("dto")
 	Session getEditDto(@RequestParam Optional<Integer> id) {
-		return id.isEmpty() ? new Session() : sessionService.findById(id.get());
+		return id.filter(a -> a > 0).isEmpty() ? new Session() : sessionService.findById(id.get());
 	}
 }
