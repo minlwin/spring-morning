@@ -66,11 +66,13 @@ public class SessionController {
 	}
 	
 	@PostMapping
-	String save(@Validated @ModelAttribute("dto") Session dto, BindingResult result, RedirectAttributes model) {
+	String save(@Validated @ModelAttribute("dto") Session dto, BindingResult result, RedirectAttributes redirect, ModelMap model) {
 		
 		if(result.hasErrors()) {
 			var courses = courseService.search(Optional.empty());
-			model.addAttribute("courses", courses);
+			model.put("courses", courses);
+			var days = DayOfWeek.values();
+			model.put("days", days);
 			return "session-edit";
 		}
 		
@@ -78,7 +80,7 @@ public class SessionController {
 		
 		dto = sessionService.save(dto);
 		
-		model.addFlashAttribute("message", 
+		redirect.addFlashAttribute("message", 
 				"Session has been %s successfully.".formatted(isNewEntity ? "Created" : "Updated"));
 		
 		return "redirect:/session/%d".formatted(dto.getId());
