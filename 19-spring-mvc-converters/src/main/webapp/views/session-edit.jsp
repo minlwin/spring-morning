@@ -44,12 +44,14 @@
 						<option value="">Select One</option>
 						<form:options items="${courses}" itemLabel="name" itemValue="id"/>						
 					</form:select>
+					<form:errors path="course" />
 				</div>
 				
 				<!-- Start Date -->
 				<div class="mb-3">
 					<label class="form-label">Start Date</label>
 					<form:input type="date" path="startDate" cssClass="form-control"/>
+					<form:errors path="startDate" />
 				</div>
 				
 				<!-- Days -->
@@ -58,6 +60,7 @@
 					<div class="row row-cols-4">
 						<form:checkboxes element="div class='col'" cssClass="me-1" items="${days}" path="days"/>
 					</div>
+					<form:errors path="days" />
 				</div>
 				
 				<div class="row mb-3">
@@ -65,12 +68,14 @@
 					<div class="col">
 						<label class="form-label">Start Time</label>
 						<form:input path="startTime" type="time" cssClass="form-control"/>
+						<form:errors path="startTime" />
 					</div>
 							
 					<!-- End Time -->
 					<div class="col">
 						<label class="form-label">End Time</label>
 						<form:input path="endTime" type="time" cssClass="form-control"/>
+						<form:errors path="endTime" />
 					</div>
 				</div>
 				
@@ -79,6 +84,7 @@
 				<div class="mb-3">
 					<label class="form-label">Available Seats</label>
 					<form:input path="seats" type="number" cssClass="form-control"/>
+					<form:errors path="seats" />
 				</div>
 				
 				
