@@ -11,7 +11,7 @@
 
 	<context:component-scan base-package="com.jdc.demo.controller"></context:component-scan>
 	
-	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:annotation-driven />
 	
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/views/" suffix=".jsp" />
@@ -26,5 +26,6 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
+
 	
 </beans>
