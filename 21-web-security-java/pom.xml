@@ -7,6 +7,10 @@
 	<version>1.0</version>
 	<packaging>war</packaging>
 	
+	<properties>
+		<spring.security>6.1.0</spring.security>
+	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -17,13 +21,13 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>6.1.0</version>
+			<version>${spring.security}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>6.1.0</version>
+			<version>${spring.security}</version>
 		</dependency>
 		
 		<dependency>

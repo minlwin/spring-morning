@@ -12,15 +12,17 @@
 
     <!-- bean definitions here -->
     <security:http pattern="/" security="none" />
+    <security:http pattern="/resources/**" security="none" />
     
     <security:http>
 		
+		<security:intercept-url pattern="/auth" access="permitAll"/>
     	<security:intercept-url pattern="/admin/**" access="hasAuthority('Admin')"/>
     	<security:intercept-url pattern="/member/**" access="hasAnyAuthority('Admin', 'Member')"/>
     	
-    	<security:form-login />
+    	<security:form-login login-page="/auth" login-processing-url="/auth" />
     		
-    	<security:logout/>
+    	<security:logout logout-success-url="/" />
 
     </security:http>
     

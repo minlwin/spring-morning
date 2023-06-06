@@ -30,13 +30,16 @@ public class WebSecurityConfig {
 		http.authorizeHttpRequests(auth -> {
 			auth.dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll();
 			auth.requestMatchers("/").permitAll();
+			auth.requestMatchers("/resources/**").permitAll();
 			auth.requestMatchers("/admin/**").hasAuthority("Admin");
 			auth.requestMatchers("/member/**").hasAnyAuthority("Admin", "Member");
 			auth.anyRequest().denyAll();
 		});
 		
 		http.formLogin(Customizer.withDefaults());
-		http.logout(Customizer.withDefaults());
+		http.logout(config -> {
+			config.logoutSuccessUrl("/");
+		});
 
 		return http.build();
 	}
