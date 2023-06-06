@@ -26,9 +26,17 @@
 
     </security:http>
     
-    <security:user-service>
-    	<security:user name="Admin" authorities="Admin" password="{noop}Admin"/>
-    	<security:user name="Member" authorities="Member" password="{noop}Member"/>
-    </security:user-service>
+    <security:authentication-manager id="authManager">
+    	
+    	<security:authentication-provider>
+		    <security:user-service>
+		    	<security:user name="Admin" authorities="Admin" password="{noop}Admin"/>
+		    	<security:user name="Member" authorities="Member" password="{noop}Member"/>
+		    </security:user-service>
+		    
+    	</security:authentication-provider>
+    
+    </security:authentication-manager>
+    
     
 </beans>
