@@ -17,10 +17,14 @@
 		<h1>Admin Home</h1>
 		
 		<c:url value="/logout" var="logoutAction"></c:url>
+		<a href="${logoutAction}" class="btn btn-outline-danger">Logout</a>
+<%-- 		
 		<sf:form action="${logoutAction}" method="post">
 			<button class="btn btn-primary">Logout</button>
 		</sf:form>
-		
+ --%>
+ 
+ 				
 	
 	</div>
 

@@ -37,9 +37,6 @@ public class WebSecurityConfig {
 		});
 		
 		http.formLogin(Customizer.withDefaults());
-		http.logout(config -> {
-			config.logoutSuccessUrl("/");
-		});
 
 		return http.build();
 	}
