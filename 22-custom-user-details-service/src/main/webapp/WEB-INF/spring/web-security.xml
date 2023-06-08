@@ -9,7 +9,32 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
         ">
-
+    
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />    
+       
     <!-- bean definitions here -->
+    <security:http>
+    
+    	<security:intercept-url pattern="/" access="permitAll"/>
+    	<security:intercept-url pattern="/manager/**" access="hasAnyAuthority('Admin', 'Manager')"/>
+    	<security:intercept-url pattern="/employee/**" access="hasAnyAuthority('Admin', 'Manager', 'Employee')"/>
+    	
+    	<security:form-login />
+    	
+    	<security:logout logout-success-url="/"  />
+    </security:http>
+    
+    <security:authentication-manager>
+    	
+    	<security:authentication-provider>
+		    <security:user-service>
+		    	<security:user name="Admin" authorities="Admin" password="$2a$10$dhpBPFtJn5M9.hYi5GqHru8xaac/YGdc23flJcG5j0Wk9Qh020NPy"/>
+		    </security:user-service>
+    	</security:authentication-provider>
+    	
+    	<security:authentication-provider user-service-ref="memberDetailsService" />
+    
+    </security:authentication-manager>
+    
     
 </beans>

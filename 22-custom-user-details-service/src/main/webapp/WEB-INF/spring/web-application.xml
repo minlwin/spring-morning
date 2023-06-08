@@ -18,5 +18,8 @@
     	<mvc:jsp prefix="/views/" suffix=".jsp"/>
     </mvc:view-resolvers>
     
-	
+	<mvc:view-controller path="/" view-name="home"/>
+	<mvc:view-controller path="/manager" view-name="manager"/>
+	<mvc:view-controller path="/employee" view-name="employee"/>
+
 </beans>
