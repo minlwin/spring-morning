@@ -16,6 +16,8 @@
     <security:http>
     
     	<security:intercept-url pattern="/" access="permitAll"/>
+    	<security:intercept-url pattern="/resources/**" access="permitAll"/>
+    	
     	<security:intercept-url pattern="/manager/**" access="hasAnyAuthority('Admin', 'Manager')"/>
     	<security:intercept-url pattern="/employee/**" access="hasAnyAuthority('Admin', 'Manager', 'Employee')"/>
     	

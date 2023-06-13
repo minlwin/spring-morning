@@ -5,22 +5,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Security Demo</title>
+<link rel="stylesheet" href="../resources/style/bootstrap.min.css" />
+<script type="text/javascript" src="../resources/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
-	<h1>Public Home</h1>
-	
-	<ul>
-		<li>
+	<div class="container mt-4">
+		<h1>Public Home</h1>
+		
+		<div>
 			<c:url value="/manager" var="managerLink" />
-			<a href="${managerLink}">Manager Home</a>
-		</li>
-		<li>
+			<a class="btn btn-primary" href="${managerLink}">Manager Home</a>
+		
 			<c:url value="/employee" var="employeeLink" />
-			<a href="${employeeLink}">Employee Home</a>
-		</li>
-	</ul>
+			<a class="btn btn-primary" href="${employeeLink}">Employee Home</a>
+		</div>
+	
+	</div>
+
 
 </body>
 </html>
