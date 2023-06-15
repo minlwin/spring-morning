@@ -53,7 +53,7 @@ public class MembersController {
 	
 	@ModelAttribute("form")
 	Members form(@RequestParam(required = false) Integer id) {
-		return null == id ? new Members() : service.findById(id);
+		return null == id || id == 0 ? new Members() : service.findById(id);
 	}
 	
 	@ModelAttribute("roles")

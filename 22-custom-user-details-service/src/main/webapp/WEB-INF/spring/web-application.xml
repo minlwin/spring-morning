@@ -21,6 +21,7 @@
 	<mvc:view-controller path="/" view-name="home"/>
 	<mvc:view-controller path="/manager" view-name="manager"/>
 	<mvc:view-controller path="/employee" view-name="employee"/>
+	<mvc:view-controller path="/customer" view-name="customer"/>
 	
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 

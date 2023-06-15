@@ -13,20 +13,22 @@
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />    
        
     <!-- bean definitions here -->
-    <security:http>
+    <security:http >
     
     	<security:intercept-url pattern="/" access="permitAll"/>
-    	<security:intercept-url pattern="/resources/**" access="permitAll"/>
+   		<security:intercept-url pattern="/signup" access="permitAll"/>
+  	   	<security:intercept-url pattern="/resources/**" access="permitAll"/>
     	
     	<security:intercept-url pattern="/manager/**" access="hasAnyAuthority('Admin', 'Manager')"/>
     	<security:intercept-url pattern="/employee/**" access="hasAnyAuthority('Admin', 'Manager', 'Employee')"/>
+    	<security:intercept-url pattern="/customer/**" access="hasAnyAuthority('Admin', 'Customer')"/>
     	
     	<security:form-login />
     	
     	<security:logout logout-success-url="/"  />
     </security:http>
     
-    <security:authentication-manager>
+    <security:authentication-manager id="authManager">
     	
     	<security:authentication-provider>
 		    <security:user-service>

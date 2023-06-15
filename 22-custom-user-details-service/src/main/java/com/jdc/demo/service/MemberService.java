@@ -5,8 +5,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.jdc.demo.service.entity.Members;
 import com.jdc.demo.service.entity.Members.Role;
@@ -19,12 +21,25 @@ public class MemberService {
 	@Autowired
 	private MembersRepo repo;
 	
+	@Autowired
+	private PasswordEncoder encoder;
+	
 	public Members findById(Integer id) {
 		return repo.findById(id).orElseThrow();
 	}
 
 	@Transactional
 	public void save(Members form) {
+		
+		if(form.getId() == 0) {
+			
+			if(!StringUtils.hasLength(form.getPassword())) {
+				form.setPassword(form.getEmail());
+			}
+			
+			form.setPassword(encoder.encode(form.getPassword()));
+		}
+		
 		repo.save(form);
 	}
 

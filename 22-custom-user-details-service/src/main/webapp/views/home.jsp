@@ -20,6 +20,12 @@
 		
 			<c:url value="/employee" var="employeeLink" />
 			<a class="btn btn-primary" href="${employeeLink}">Employee Home</a>
+
+			<c:url value="/customer" var="customerLink" />
+			<a class="btn btn-primary" href="${customerLink}">Customer Home</a>
+
+			<c:url value="/signup" var="signup" />
+			<a class="btn btn-primary" href="${signup}">Customer Sign Up</a>
 		</div>
 	
 	</div>
