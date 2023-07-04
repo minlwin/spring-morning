@@ -14,6 +14,11 @@
 	<div class="container mt-4">
 		<h1 th:text="'Hello Thymeleaf'">Hello Spring MVC</h1>
 		
+		<div th:utext="|Message is ${message}|"></div>
+		
+		<div>[[${message}]]</div>
+		
+		<div>[(${message})]</div>
 		
 		<table class="table table-striped">
 			
@@ -29,12 +34,12 @@
 			
 			<tbody>
 			
-				<tr th:each="item : ${list}">
-					<td th:text="${item.id}">ID</td>
-					<td th:text="${item.name}">Name</td>
-					<td th:text="${item.burmese}">Burmese</td>
-					<td th:text="${item.capital}">Capital</td>
-					<td th:text="${item.region}">Region</td>
+				<tr th:each="item : ${list}" th:object="${item}">
+					<td th:text="*{id}">ID</td>
+					<td th:text="*{name}">Name</td>
+					<td th:text="*{burmese}">Burmese</td>
+					<td th:text="*{capital}">Capital</td>
+					<td th:text="*{region}">Region</td>
 				</tr>
 				
 			</tbody>
