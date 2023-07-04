@@ -1,0 +1,15 @@
+insert into Division (name, burmese, capital, region) values ('Ayeyarwady Region', 'ဧရာဝတီတိုင်းဒေသကြီး', 'Pathein', 'South');
+insert into Division (name, burmese, capital, region) values ('Bago Region', 'ပဲခူးတိုင်းဒေသကြီး', 'Bago', 'South, Central');
+insert into Division (name, burmese, capital, region) values ('Chin State', 'ချင်းပြည်နယ်', 'Hakha', 'North, West');
+insert into Division (name, burmese, capital, region) values ('Kachin State', 'ကချင်ပြည်နယ်', 'Myitkyina', 'North');
+insert into Division (name, burmese, capital, region) values ('Kayah State', 'ကယားပြည်နယ်', 'Loikaw', 'East');
+insert into Division (name, burmese, capital, region) values ('Kayin State', 'ကရင်ပြည်နယ်', 'Hpa-an', 'South, East');
+insert into Division (name, burmese, capital, region) values ('Magway Region', 'မကွေးတိုင်းဒေသကြီး', 'Magwe', 'Central');
+insert into Division (name, burmese, capital, region) values ('Mandalay Region', 'မန္တလေးတိုင်းဒေသကြီး', 'Mandalay', 'Central');
+insert into Division (name, burmese, capital, region) values ('Mon State', 'မွန်ပြည်နယ်', 'Mawlamyine', 'South');
+insert into Division (name, burmese, capital, region) values ('Naypyidaw Union Territory', 'နေပြည်တော် ပြည်ထောင်စုနယ်မြေ', 'Naypyidaw', 'Central');
+insert into Division (name, burmese, capital, region) values ('Rakhine State', 'ရခိုင်ပြည်နယ်', 'Sittwe', 'West');
+insert into Division (name, burmese, capital, region) values ('Sagaing Region', 'စစ်ကိုင်းတိုင်းဒေသကြီး', 'Monywa', 'North, West');
+insert into Division (name, burmese, capital, region) values ('Shan State', 'ရှမ်းပြည်နယ်', 'Taunggyi', 'North, East');
+insert into Division (name, burmese, capital, region) values ('Tanintharyi Region', 'တနင်္သာရီတိုင်းဒေသကြီး', 'Dawei', 'South');
+insert into Division (name, burmese, capital, region) values ('Yangon Region', 'ရန်ကုန်တိုင်းဒေသကြီး', 'Yangon', 'Central');

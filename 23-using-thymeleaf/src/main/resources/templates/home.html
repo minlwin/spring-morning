@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hello Thymeleaf</title>
+
+
+<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" href="../static/bootstrap/css/bootstrap.min.css" />
+<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</head>
+<body>
+	
+	<div class="container mt-4">
+		<h1 th:text="'Hello Thymeleaf'">Hello Spring MVC</h1>
+		
+		
+		<table class="table table-striped">
+			
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Burmese</th>
+					<th>Capital</th>
+					<th>Region</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+			
+				<tr th:each="item : ${list}">
+					<td th:text="${item.id}">ID</td>
+					<td th:text="${item.name}">Name</td>
+					<td th:text="${item.burmese}">Burmese</td>
+					<td th:text="${item.capital}">Capital</td>
+					<td th:text="${item.region}">Region</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	
+	</div>
+
+</body>
+</html>
