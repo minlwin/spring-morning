@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/layout :: mainLayout('Fragments', ~{::main})}">
+<head>
+<meta charset="UTF-8">
+
+</head>
+<body>
+
+	<main>
+		<h1>Using Fragment</h1>
+		
+		<div class="row">
+			<div class="col" th:insert="~{/fragments/demo :: simpleAlert}"></div>
+			<div class="col" th:insert="~{/fragments/demo :: alert(message = 'Fragments with Parameters.')}">
+			
+			</div>
+		</div>
+	</main>
+
+</body>
+</html>

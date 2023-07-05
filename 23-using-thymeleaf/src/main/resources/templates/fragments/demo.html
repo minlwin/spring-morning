@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- Simple Fragment -->
+	<div th:fragment="simpleAlert" class="alert alert-info">This is Simple Alert Fragment</div>
+	
+	<!-- Fragment with arguments -->
+	<div class="alert alert-info" th:fragment="alert" 
+		th:classappend="${className}" th:text="${message}"></div>
+	
+	<!-- Fragment with Local Variables -->
+
+
+</body>
+</html>

@@ -17,10 +17,14 @@ public class HomeController {
 
 	@GetMapping
 	String index(ModelMap model) {
-		model.put("list", service.findAll());
-		
 		model.put("message", "<h3>Hello Thymeleaf Text Output</h3>");
 		
 		return "home";
+	}
+	
+	@GetMapping("iteration")
+	String iteration(ModelMap model) {
+		model.put("list", service.findAll());
+		return "iteration";
 	}
 }

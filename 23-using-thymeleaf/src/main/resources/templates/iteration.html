@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/layout :: mainLayout('Iteration', ~{::main})}">
+<head>
+<meta charset="UTF-8">
+
+</head>
+<body>
+
+	<main>
+		<h1 th:text="'Iteration Demo'">Hello Spring MVC</h1>
+				
+		<table class="table table-striped">
+			
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Burmese</th>
+					<th>Capital</th>
+					<th>Region</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+			
+				<tr th:each="item : ${list}" th:object="${item}">
+					<td th:text="*{id}">ID</td>
+					<td th:text="*{name}">Name</td>
+					<td th:text="*{burmese}">Burmese</td>
+					<td th:text="*{capital}">Capital</td>
+					<td th:text="*{region}">Region</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</main>
+
+</body>
+</html>
