@@ -1,11 +1,9 @@
 package com.jdc.balance.model.data.form;
 
-import java.util.*;
+import lombok.Data;
 
+@Data
 public class PasswordForm {
-
-	public PasswordForm() {
-	}
 
 	private String password;
 

@@ -3,15 +3,16 @@ package com.jdc.balance.controller.member;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jdc.balance.model.data.form.TransactionForm;
 import com.jdc.balance.model.data.form.TransactionForm.Type;
 
+@Controller
+@RequestMapping("employee/transaction")
 public class DailyTransactionController {
-
-	public DailyTransactionController() {
-	}
 
 	public String search(int project, Optional<Type> type, Optional<Integer> ledger, Optional<LocalDate> from, Optional<LocalDate> to) {
 		// TODO implement here
