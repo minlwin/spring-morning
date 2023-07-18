@@ -1,0 +1,22 @@
+html, body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#cover {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#controls {
+	height: 20%;
+}
+
+#controls a {
+	display: inline-block;
+	width: 200px;
+}

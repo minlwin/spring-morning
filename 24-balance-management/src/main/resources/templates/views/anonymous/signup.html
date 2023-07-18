@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/anonymous :: layout(title = 'Sign In', content = ~{::main})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<main style="height: 500px" class="w-75 d-flex justify-content-center">
+	
+		<form action="#" class="w-50" method="post">
+			<h3><i class="bi bi-unlock"></i> Sign Up</h3>
+			<p class="mb-4">Welcome to THE BALANCES!</p>
+
+			<div class="mb-3">
+				<label class="form-label">Name</label>
+				<input type="email" placeholder="Enter your name" class="form-control" />
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label">Login Email</label>
+				<input type="email" placeholder="Enter your login email" class="form-control" />
+			</div>
+
+			<div class="mb-3">
+				<label class="form-label">Password</label>
+				<input type="password" placeholder="Enter your password" class="form-control" />
+			</div>
+			
+			<div>
+				<button class="btn btn-outline-primary">
+					<i class="bi bi-unlock"></i> Sign Up
+				</button>
+				
+				<a th:href="@{/public/signin}" class="btn btn-outline-primary">
+					<i class="bi bi-door-open"></i> Sign In
+				</a>
+			</div>
+		</form>
+	
+	</main>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/anonymous :: layout(title = 'Home', content = ~{::main}, controls= ~{::controls})}">
+<head>
+<meta charset="UTF-8">
+
+</head>
+<body>
+
+	<main>
+		<!-- Images to describe our features -->
+		<section class="row">
+			<!-- Create Company Account -->
+			<div class="col">
+				<img th:src="@{/images/cover1.png}" class="img-fluid w-100" alt="Create Company" />
+			</div>
+			
+			<!-- Employee Management -->
+			<div class="col">
+				<img th:src="@{/images/cover2.png}" class="img-fluid w-100" alt="Manage Employee" />
+			</div>
+			
+			<!-- Project Management -->
+			<div class="col">
+				<img th:src="@{/images/cover3.png}" class="img-fluid w-100" alt="Manage Projects" />
+			</div>
+		</section>
+		
+	</main>
+
+	<!-- Buttons -->
+	<section th:fragment="controls">
+		<!-- Sign Up -->	
+		<a th:href="@{/public/signup}" class="btn btn-outline-primary">
+			<i class="bi bi-unlock"></i> Sign Up
+		</a>
+		<!-- Sign In -->
+		<a th:href="@{/public/signin}" class="btn btn-outline-primary">
+			<i class="bi bi-door-open"></i> Sign In
+		</a>
+		
+	</section>	
+	
+</body>
+</html>

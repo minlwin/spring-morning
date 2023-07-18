@@ -17,7 +17,7 @@ public class SignUpController {
 	@GetMapping
 	public String index() {
 		// TODO implement here
-		return "";
+		return "views/anonymous/signup";
 	}
 
 	@PostMapping
