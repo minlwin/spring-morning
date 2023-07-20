@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section th:fragment="pagination" class="row">
+		
+		<!-- Page Select -->
+		<div class="col-auto">
+			<select name="size" class="form-select">
+				<option value="10">10</option>
+				<option value="25">25</option>
+				<option value="50">50</option>
+			</select>
+		</div>
+		
+		<!-- Page Links -->
+		<div class="col d-flex">
+			<a href="#" class="btn btn-outline-dark me-1">
+				<i class="bi bi-chevron-double-left"></i>
+			</a>
+			<a href="#" class="btn btn-outline-dark me-1">
+				<i class="bi bi-chevron-left"></i>
+			</a>
+			<a href="#" class="btn btn-outline-dark me-1">
+				1
+			</a>
+			<a href="#" class="btn btn-outline-dark me-1">
+				<i class="bi bi-chevron-right"></i>
+			</a>
+			<a href="#" class="btn btn-outline-dark">
+				<i class="bi bi-chevron-double-right"></i>
+			</a>
+		</div>
+	
+	</section>
+
+</body>
+</html>

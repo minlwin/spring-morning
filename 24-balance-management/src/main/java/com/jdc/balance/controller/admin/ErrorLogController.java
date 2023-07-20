@@ -20,13 +20,13 @@ public class ErrorLogController {
 			@RequestParam Optional<LocalDate> to, 
 			ModelMap model) {
 		// TODO implement here
-		return "";
+		return "views/admin/error-logs";
 	}
 
 	@GetMapping("{id}")
 	public String showDetails(@PathVariable long id, ModelMap model) {
 		// TODO implement here
-		return "";
+		return "views/admin/error-details";
 	}
 
 }

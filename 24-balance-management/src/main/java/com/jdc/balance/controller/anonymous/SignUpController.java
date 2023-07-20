@@ -16,21 +16,18 @@ public class SignUpController {
 
 	@GetMapping
 	public String index() {
-		// TODO implement here
 		return "views/anonymous/signup";
 	}
 
 	@PostMapping
 	public String signUp(
 			@ModelAttribute("form") @Validated SignUpForm form, BindingResult result) {
-		// TODO implement here
-		return "";
+		return "redirect:/%s/home".formatted(form.getPassword());
 	}
 
 	@ModelAttribute("form")
 	public SignUpForm form() {
-		// TODO implement here
-		return null;
+		return new SignUpForm();
 	}
 
 }

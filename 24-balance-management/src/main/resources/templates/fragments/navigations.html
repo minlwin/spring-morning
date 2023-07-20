@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<ul th:fragment="admin" class="navbar-nav">
+		<li class="nav-item">
+			<a th:href="@{/admin/member}" th:classappend="${active eq 'members'} ? 'active' : ''" class="nav-link">
+				<i class="bi bi-people"></i> Members
+			</a>
+		</li>
+		<li class="nav-item">
+			<a th:href="@{/admin/access/logs}" th:classappend="${active eq 'access'} ? 'active' : ''" class="nav-link">
+				<i class="bi bi-check-all"></i> Access Logs
+			</a>
+		</li>
+		<li class="nav-item">
+			<a th:href="@{/admin/error/logs}" th:classappend="${active eq 'error'} ? 'active' : ''" class="nav-link">
+				<i class="bi bi-bug"></i> Error Logs
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="/" class="nav-link">
+				<i class="bi bi-lock"></i> Sign Out
+			</a>
+		</li>
+	</ul>
+
+	<ul th:fragment="member" class="navbar-nav"></ul>
+
+</body>
+</html>

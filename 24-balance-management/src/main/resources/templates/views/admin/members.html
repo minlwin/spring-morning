@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/fragments/common :: layout(title = 'Home', content = ~{::main},active = 'members', menu = ~{/fragments/navigations :: admin})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<main>
+		<!-- Title -->
+		<h3 class="mb-4">
+			<i class="bi bi-people"></i> Member Management
+		</h3>
+		
+		<!-- Search Form -->
+		<form action="#" class="row">
+			<!-- Role -->
+			<div class="col-auto">
+				<label class="form-label">Role</label>
+				<select name="role" class="form-select">
+					<option value="">All Roles</option>
+				</select>
+			</div>
+			
+			<!-- Name Like -->
+			<div class="col-auto">
+				<label class="form-label">Member Name</label>
+				<input type="text" name="name" placeholder="Search Name" class="form-control" />
+			</div>
+			
+			
+			<!-- Date From -->
+			<div class="col-auto">
+				<label class="form-label">From</label>
+				<input type="date" name="from" class="form-control" />
+			</div>
+			
+			<!-- Date To -->
+			<div class="col-auto">
+				<label class="form-label">To</label>
+				<input type="date" name="to" class="form-control" />
+			</div>
+			
+			<div class="col btn-wrapper">
+				<button class="btn btn-outline-dark">
+					<i class="bi bi-search"></i> Search
+				</button>
+				
+				<a href="#" class="btn btn-outline-danger">
+					<i class="bi bi-plus"></i> Add Admin
+				</a>
+			</div>
+		</form>
+		
+		<!-- Search Result -->
+		<table class="table table-striped my-4">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Role</th>
+					<th>Registration At</th>
+					<th>Last Login</th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>Thidar</td>
+					<td>thidar@gmail.com</td>
+					<td>Member</td>
+					<td>2023-07-20</td>
+					<td>2023-07-20 08:23</td>
+					<td>
+						<a href="#">
+							<i class="bi bi-send"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!-- Pagination -->
+		<section th:replace="~{/fragments/components :: pagination}"></section>
+	</main>
+
+</body>
+</html>

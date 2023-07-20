@@ -20,3 +20,8 @@ html, body {
 	display: inline-block;
 	width: 200px;
 }
+
+
+.btn-wrapper {
+	padding-top: 2rem;
+}

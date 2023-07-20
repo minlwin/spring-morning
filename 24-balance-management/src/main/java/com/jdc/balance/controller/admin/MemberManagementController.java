@@ -19,7 +19,7 @@ public class MemberManagementController {
 	@GetMapping
 	public String search(ModelMap model) {
 		// TODO implement here
-		return "";
+		return "views/admin/members";
 	}
 
 	@GetMapping("{email}")

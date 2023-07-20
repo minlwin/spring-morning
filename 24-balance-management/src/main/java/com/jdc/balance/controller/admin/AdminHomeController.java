@@ -11,8 +11,8 @@ public class AdminHomeController {
 
 	@GetMapping
 	public String index(ModelMap model) {
-		// TODO implement here
-		return "";
+		
+		return "views/admin/home";
 	}
 
 }
