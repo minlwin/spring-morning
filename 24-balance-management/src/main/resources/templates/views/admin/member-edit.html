@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/fragments/common :: layout(title = 'Add New Admin', content = ~{::main}, active = 'members', menu = ~{/fragments/navigations :: admin})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<main>
+		<div th:replace="~{/fragments/components :: pageTitle(title = 'Add New Admin', icon = 'bi-person-plus')}"></div>
+		
+		
+		<form th:action="@{|/admin/member/${email}|}" method="post" class="w-50">
+			<!-- Name -->
+			<div>
+				<label class="form-label">Admin Name</label>
+				<input type="text" placeholder="Enter Admin User Name" class="form-control" />
+			</div>
+			
+			<!-- Email -->
+			<div class="mt-3">
+				<label class="form-label">Email Address</label>
+				<input type="email" placeholder="Enter Email Address" class="form-control" />
+			</div>
+			
+			<!-- Phone -->
+			<div class="mt-3">
+				<label class="form-label">Phone Number</label>
+				<input type="tel" placeholder="Enter Phone Number" class="form-control" />
+			</div>
+			
+			<div class="mt-4">
+				<button class="btn btn-outline-dark">
+					<i class="bi bi-save"></i> Save
+				</button>
+			</div>
+		
+		</form>
+	
+	</main>
+
+</body>
+</html>

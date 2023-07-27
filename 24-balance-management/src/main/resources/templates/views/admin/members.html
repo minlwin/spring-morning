@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/fragments/common :: layout(title = 'Home', content = ~{::main},active = 'members', menu = ~{/fragments/navigations :: admin})}">
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/common :: layout(title = 'Members', content = ~{::main}, active = 'members', menu = ~{/fragments/navigations :: admin})}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -8,9 +9,7 @@
 
 	<main>
 		<!-- Title -->
-		<h3 class="mb-4">
-			<i class="bi bi-people"></i> Member Management
-		</h3>
+		<div th:replace="~{/fragments/components :: pageTitle(title = 'Member Management', icon = 'bi-people')}"></div>
 		
 		<!-- Search Form -->
 		<form action="#" class="row">
@@ -46,7 +45,7 @@
 					<i class="bi bi-search"></i> Search
 				</button>
 				
-				<a href="#" class="btn btn-outline-danger">
+				<a th:href="@{/admin/member/edit}" class="btn btn-outline-danger">
 					<i class="bi bi-plus"></i> Add Admin
 				</a>
 			</div>
@@ -56,9 +55,11 @@
 		<table class="table table-striped my-4">
 			<thead>
 				<tr>
+					<th>Code</th>
 					<th>Name</th>
 					<th>Email</th>
 					<th>Role</th>
+					<th>Status</th>
 					<th>Registration At</th>
 					<th>Last Login</th>
 					<th></th>
@@ -67,13 +68,15 @@
 			
 			<tbody>
 				<tr>
+					<td>MEM-0001</td>
 					<td>Thidar</td>
 					<td>thidar@gmail.com</td>
 					<td>Member</td>
+					<td>Apply</td>
 					<td>2023-07-20</td>
 					<td>2023-07-20 08:23</td>
 					<td>
-						<a href="#">
+						<a th:href="@{|/admin/member/${'email'}|}">
 							<i class="bi bi-send"></i>
 						</a>
 					</td>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/fragments/common :: layout(title = 'Member', content = ~{::main}, active = 'members', menu = ~{/fragments/navigations :: admin})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<main>
+		
+		<div th:replace="~{/fragments/components :: pageTitle(title = 'Member Details', icon = 'bi-person')}"></div>
+		
+		<!-- Personal Information -->
+		<div class="row">
+			<!-- Member Code -->
+			<div class="col-2">
+				<label class="form-label">Code</label>
+				<span class="form-control">MEM-0001</span>
+			</div>
+			<!-- Name -->
+			<div class="col-3">
+				<label class="form-label">Name</label>
+				<span class="form-control">Aung Aung</span>
+			</div>
+			<!-- Email -->
+			<div class="col-3">
+				<label class="form-label">Email</label>
+				<span class="form-control">aung@gmail.com</span>
+			</div>
+		</div>
+		
+		<div class="row mt-3">
+			<!-- Status -->
+			<div class="col-2">
+				<label class="form-label">Status</label>
+				<span class="form-control">Apply</span>
+			</div>
+
+			<!-- Role -->
+			<div class="col-3">
+				<label class="form-label">Role</label>
+				<span class="form-control">Member</span>
+			</div>
+		
+			<!-- Status -->
+			<div class="col-3">
+				<label class="form-label">Apply At</label>
+				<span class="form-control">2023-10-01</span>
+			</div>
+			
+		</div>
+		
+		<!-- Company Information -->
+		<div class="row mt-3">
+			<!-- Company Code -->
+			<div class="col-2">
+				<label class="form-label">Category</label>
+				<span class="form-control">CO-001</span>
+			</div>
+		
+			<!-- Company Name -->
+			<div class="col-3">
+				<label class="form-label">Company Name</label>
+				<span class="form-control">CO-001</span>
+			</div>
+
+			<!-- Company Phone -->
+			<div class="col-3">
+				<label class="form-label">Phone Number</label>
+				<span class="form-control">CO-001</span>
+			</div>
+
+		</div>
+		
+		<!-- Status Change Controls -->	
+		<div class="mt-4">
+			<!-- Approved Button -->
+			<button class="btn btn-outline-dark">
+				<i class="bi bi-check"></i> Approve
+			</button>
+			
+			<!-- Denied -->
+			<button class="btn btn-outline-secondary">
+				<i class="bi bi-x"></i> Denied
+			</button>
+			
+		</div>
+			
+	</main>
+
+</body>
+</html>

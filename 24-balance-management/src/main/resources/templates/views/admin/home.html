@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/fragments/common :: layout(title = 'Home', menu = ~{/fragments/navigations :: admin})}">
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/common :: layout(title = 'Home', content = ~{::main}, menu = ~{/fragments/navigations :: admin})}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+
+	<main></main>
 
 </body>
 </html>

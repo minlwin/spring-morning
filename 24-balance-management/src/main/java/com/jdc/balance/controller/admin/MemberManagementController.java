@@ -25,14 +25,14 @@ public class MemberManagementController {
 	@GetMapping("{email}")
 	public String showDetails(@PathVariable String email, ModelMap model) {
 		// TODO implement here
-		return "";
+		return "views/admin/member-details";
 	}
 
-	@PostMapping("status")
+	@PostMapping("{email}")
 	public String updateStatus(
 			@ModelAttribute("form") @Validated MemberStatusForm form, BindingResult result) {
 		// TODO implement here
-		return "";
+		return "views/admin/member-details";
 	}
 
 	@ModelAttribute("form")

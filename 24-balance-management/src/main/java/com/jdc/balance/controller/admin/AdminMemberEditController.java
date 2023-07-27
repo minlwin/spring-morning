@@ -17,7 +17,7 @@ public class AdminMemberEditController {
 	@GetMapping
 	public String edit() {
 		// TODO implement here
-		return "";
+		return "views/admin/member-edit";
 	}
 
 	@PostMapping
