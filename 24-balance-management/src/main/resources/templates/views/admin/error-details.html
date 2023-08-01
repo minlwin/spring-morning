@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/fragments/common :: layout(title = 'Home', menu = ~{/fragments/navigations :: admin})}">
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/fragments/common :: layout(title = 'Home', content = ~{::main}, active = 'error', menu = ~{/fragments/navigations :: admin})}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+
+	<main>
+		<div
+			th:replace="~{/fragments/components :: pageTitle(title = 'Error Details', icon = 'bi-bug')}"></div>
+
+		<div class="row">
+			<div class="col-auto">
+				<label class="form-label">What</label> <span class="form-control">NullPointerException</span>
+			</div>
+			<div class="col-auto">
+				<label class="form-label">When</label> <span class="form-control">2023-08-01 12:14:11</span>
+			</div>
+			<div class="col-auto">
+				<label class="form-label">Status</label> <span class="form-control">Progress</span>
+			</div>
+			<div class="col">
+				<label class="form-label">How</label> <span class="form-control">You can't access member of null value</span>
+			</div>
+		</div>
+		
+		<div class="mt-4 p-4 bg-dark text-white">
+			<pre th:text="${log}"></pre>
+		</div>
+
+	</main>
 
 </body>
 </html>

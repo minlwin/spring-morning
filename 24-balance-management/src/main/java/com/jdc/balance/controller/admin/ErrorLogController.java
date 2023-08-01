@@ -25,6 +25,18 @@ public class ErrorLogController {
 
 	@GetMapping("{id}")
 	public String showDetails(@PathVariable long id, ModelMap model) {
+		
+		String str = null;
+		
+		try {
+			str.length();
+		} catch (Exception e) {
+			var sb = new StringBuffer();
+			for(var trace : e.getStackTrace()) {
+				sb.append(trace.toString()).append("\n");
+			}
+			model.put("log", sb.toString());
+		}
 		// TODO implement here
 		return "views/admin/error-details";
 	}

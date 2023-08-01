@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/fragments/common :: layout(title = 'Home', active = 'error', menu = ~{/fragments/navigations :: admin})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'Home', active = 'error', menu = ~{/fragments/navigations :: admin})}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+
+	<main>
+		<div th:replace="~{/fragments/components :: pageTitle(title = 'Error Logs', icon = 'bi-bug')}"></div>
+	
+		<!-- Search Form -->
+		<form action="#" class="row">
+			<!-- Status -->
+			<div class="col-auto">
+				<label class="form-label">Status</label>
+				<select name="role" class="form-select">
+					<option value="">All Status</option>
+				</select>
+			</div>
+			<!-- Date From -->
+			<div class="col-auto">
+				<label class="form-label">From</label>
+				<input type="date" name="from" class="form-control" />
+			</div>
+			
+			<!-- Date To -->
+			<div class="col-auto">
+				<label class="form-label">To</label>
+				<input type="date" name="to" class="form-control" />
+			</div>
+			
+			<div class="col btn-wrapper">
+				<button class="btn btn-outline-dark">
+					<i class="bi bi-search"></i> Search
+				</button>
+			</div>
+		</form>		
+
+		<!-- Search Result -->
+		<table class="table table-striped my-4">
+			<thead>
+				<tr>
+					<th>What</th>
+					<th>When</th>
+					<th>Owner</th>
+					<th>Status</th>
+					<th>How</th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>NullPointerException</td>
+					<td>2023-08-01 12:14</td>
+					<td>Min Lwin</td>
+					<td>Progress</td>
+					<td>TransactionRepository is null</td>
+					<td>
+						<a th:href="@{|/admin/error/logs/${'1'}|}" class="btn-link">
+							<i class="bi bi-binoculars"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!-- Pagination -->
+		<section th:replace="~{/fragments/components :: pagination}"></section>	
+
+	</main>
 
 </body>
 </html>

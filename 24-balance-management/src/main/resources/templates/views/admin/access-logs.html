@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/fragments/common :: layout(title = 'Access', active = 'access', menu = ~{/fragments/navigations :: admin})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'Access', active = 'access', menu = ~{/fragments/navigations :: admin})}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+
+	<main>
+		<div th:replace="~{/fragments/components :: pageTitle(title = 'Access Logs', icon = 'bi-shield')}"></div>
+		
+		<!-- Search Form -->
+		<form action="#" class="row">
+			<!-- Status -->
+			<div class="col-auto">
+				<label class="form-label">Status</label>
+				<select name="role" class="form-select">
+					<option value="">All Status</option>
+				</select>
+			</div>
+			<!-- Date From -->
+			<div class="col-auto">
+				<label class="form-label">From</label>
+				<input type="date" name="from" class="form-control" />
+			</div>
+			
+			<!-- Date To -->
+			<div class="col-auto">
+				<label class="form-label">To</label>
+				<input type="date" name="to" class="form-control" />
+			</div>
+			
+			<!-- Name Like -->
+			<div class="col-auto">
+				<label class="form-label">Login ID</label>
+				<input type="text" name="username" placeholder="Search Login Id" class="form-control" />
+			</div>
+
+			<div class="col btn-wrapper">
+				<button class="btn btn-outline-dark">
+					<i class="bi bi-search"></i> Search
+				</button>
+			</div>
+		</form>		
+
+		<!-- Search Result -->
+		<table class="table table-striped my-4">
+			<thead>
+				<tr>
+					<th>Access</th>
+					<th>Status</th>
+					<th>Login ID</th>
+					<th>Access Time</th>
+					<th>Access Times in a day</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>Login</td>
+					<td>Invalid Login ID</td>
+					<td>adm@gmail</td>
+					<td>2023-08-01 12:15</td>
+					<td>2</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!-- Pagination -->
+		<section th:replace="~{/fragments/components :: pagination}"></section>	
+	</main>
 
 </body>
 </html>
