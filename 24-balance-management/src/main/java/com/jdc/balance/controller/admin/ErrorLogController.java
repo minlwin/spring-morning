@@ -26,10 +26,8 @@ public class ErrorLogController {
 	@GetMapping("{id}")
 	public String showDetails(@PathVariable long id, ModelMap model) {
 		
-		String str = null;
-		
 		try {
-			str.length();
+			justDemo().length();
 		} catch (Exception e) {
 			var sb = new StringBuffer();
 			for(var trace : e.getStackTrace()) {
@@ -39,6 +37,10 @@ public class ErrorLogController {
 		}
 		// TODO implement here
 		return "views/admin/error-details";
+	}
+	
+	private String justDemo() {
+		return null;
 	}
 
 }
