@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'Access', active = 'access', menu = ~{/fragments/navigations :: admin})}">
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'Access', active = 'access', menu = ~{/fragments/navigations :: admin})}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -8,6 +9,8 @@
 
 	<main>
 		<div th:replace="~{/fragments/components :: pageTitle(title = 'Access Logs', icon = 'bi-shield')}"></div>
+
+		<div th:replace="~{/fragments/components :: spacer-3}"></div>
 		
 		<!-- Search Form -->
 		<form action="#" class="row">

@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/fragments/common :: layout(title = 'Home', menu = ~{/fragments/navigations :: member})}">
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'Member Home', active = 'home', menu = ~{/fragments/navigations :: member})}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+
+	<main>
+		
+		<div class="d-flex justify-content-between align-items-center">
+			<div th:replace="~{/fragments/components :: pageTitle(title = 'Member Home', icon = 'bi-house')}"></div>
+			
+			<a href="#" class="btn btn-outline-secondary">
+				<i class="bi bi-plus"></i> Add New Project
+			</a>	
+		</div>
+		
+		<div th:replace="~{/fragments/components :: spacer-3}"></div>
+		
+		<div class="row">
+			<div class="col-3">
+				<!-- Profile -->
+				<div th:insert="~{/fragments/profile :: member}" class="mb-3"></div>
+				
+				<!-- Company Profile -->
+				<div th:insert="~{/fragments/profile :: company}"></div>
+			
+			</div>
+			
+			<div class="col">
+				<!-- Projects -->
+			</div>
+		</div>
+		
+	</main>
 
 </body>
 </html>

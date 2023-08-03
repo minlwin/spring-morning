@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section th:fragment="member" class="card">
+		<div class="card-body">
+			<h5 class="card-title d-flex justify-content-between">
+			
+				<span>
+					<i class="bi bi-person"></i> Member Profile
+				</span>
+				
+				<a href="#" class="btn-link">
+					<i class="bi bi-pencil"></i>
+				</a>
+			</h5>
+			
+			<!-- Name -->
+			<div th:replace="~{/fragments/components :: property(name = 'Name', value = 'Aung Aung')}"></div>
+			
+			<!-- Email -->
+			<div th:replace="~{/fragments/components :: property(name = 'Email', value = 'aung@gmail.com')}"></div>
+			
+			<!-- Role -->
+			
+			<!-- Entry Date -->
+			
+			<!-- Status -->
+		</div>
+	</section>
+	
+	<section th:fragment="company" class="card">
+		<div class="card-body">
+			<h5 class="card-title d-flex justify-content-between">
+				<span>
+					<i class="bi bi-briefcase"></i> Company Profile
+				</span>
+
+				<a href="#" class="btn-link">
+					<i class="bi bi-pencil"></i>
+				</a>
+			</h5>
+		</div>
+	</section>
+
+</body>
+</html>

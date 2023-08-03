@@ -29,7 +29,53 @@
 		</li>
 	</ul>
 
-	<ul th:fragment="member" class="navbar-nav"></ul>
+	<ul th:fragment="member" class="navbar-nav">
+		<!-- Home -->
+		<li class="nav-item">
+			<a href="#" th:classappend="${active eq 'home'} ? 'active' : ''" class="nav-link">
+				<i class="bi bi-house"></i> Member Home
+			</a>
+		</li>
+		
+		<!-- Ledger Management -->
+		<li class="nav-item">
+			<a href="#" th:classappend="${active eq 'ledger'} ? 'active' : ''" class="nav-link">
+				<i class="bi bi-tags"></i> Ledgers
+			</a>
+		</li>
+		
+		<!-- Employee Management -->
+		<li class="nav-item">
+			<a href="#" th:classappend="${active eq 'employee'} ? 'active' : ''" class="nav-link">
+				<i class="bi bi-people"></i> Employees
+			</a>
+		</li>
+		
+		<!-- User Menus -->
+		<li class="nav-item dropdown">
+			<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+				<i class="bi bi-person"></i> User Name
+			</a>
+			
+			<ul class="dropdown-menu dropdown-menu-end">
+				<li>
+					<a href="#" class="dropdown-item">
+						<i class="bi bi-shield"></i> Change Password
+					</a>
+				</li>
+				<li>
+					<a href="#" class="dropdown-item">
+						<i class="bi bi-pencil"></i> Edit Profile
+					</a>
+				</li>
+				<li>
+					<a href="#" class="dropdown-item">
+						<i class="bi bi-lock"></i> Sign Out
+					</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
 
 </body>
 </html>

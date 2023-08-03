@@ -9,6 +9,7 @@
 
 	<main>
 		<div th:replace="~{/fragments/components :: pageTitle(title = 'Add New Admin', icon = 'bi-person-plus')}"></div>
+		<div th:replace="~{/fragments/components :: spacer-3}"></div>
 		
 		
 		<form th:action="@{|/admin/member/${email}|}" method="post" class="w-50">

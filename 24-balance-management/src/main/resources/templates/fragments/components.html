@@ -7,10 +7,12 @@
 <body>
 
 	<!-- Page Title Fragment -->
-	<h3 th:fragment="pageTitle" class="mb-4">
+	<h3 th:fragment="pageTitle">
 		<i class="bi" th:classappend="${icon}"></i> [[${title}]]
 	</h3>
-
+	
+	
+	<div th:fragment="spacer-3" class="mb-3"></div>
 
 	<!-- Pagination Fragment -->
 	<section th:fragment="pagination" class="row">
@@ -44,6 +46,11 @@
 		</div>
 			
 	</section>
+	
+	<div th:fragment="property" class="d-flex flex-column">
+		<label th:text="${name}" class="text-secondary"></label>
+		<span th:text="${value}"></span>
+	</div>
 
 </body>
 </html>
