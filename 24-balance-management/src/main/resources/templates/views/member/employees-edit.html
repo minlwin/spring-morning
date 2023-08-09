@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'New Employee', active = 'employee', menu = ~{/fragments/navigations :: member})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<main>
+		
+		<div class="d-flex justify-content-between align-items-center">
+			<div th:replace="~{/fragments/components :: pageTitle(title = 'Add New Employee', icon = 'bi-people')}"></div>
+		</div>
+		
+		<div th:replace="~{/fragments/components :: spacer-3}"></div>
+		
+		<form th:action="@{/manager/employee}" method="post" class="row row-cols-2 gx-4 gy-3 w-75" >
+
+			<!-- Role -->
+			<div class="col">
+				<label class="form-label">Role</label>
+				<select class="form-select">
+					<option value="">Select Role</option>
+				</select>
+			</div>
+
+			<!-- Name -->
+			<div class="col">
+				<label class="form-label">Name</label>
+				<input type="text" class="form-control" placeholder="Enter Employee Name" />
+			</div>
+			
+			<!-- Email Address -->
+			<div class="col">
+				<label class="form-label">Email</label>
+				<input type="email" class="form-control" placeholder="Enter Email Address" />
+			</div>
+			
+			<!-- Phone Number -->
+			<div class="col">
+				<label class="form-label">Phone</label>
+				<input type="tel" class="form-control" placeholder="Enter Phone Number" />
+			</div>
+
+			<!-- Assign Date -->
+			<div class="col">
+				<label class="form-label">Assign At</label>
+				<input type="date" class="form-control"  />
+			</div>
+			
+			<!-- Retire Date -->
+			<div class="col">
+				<label class="form-label">Retire At</label>
+				<input type="date" class="form-control"  />
+			</div>
+			
+			<div class="col">
+				<button class="btn btn-outline-danger">
+					<i class="bi-save"></i> Save
+				</button>
+			</div>
+			
+		</form>
+	</main>
+
+</body>
+</html>

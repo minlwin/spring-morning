@@ -32,21 +32,21 @@
 	<ul th:fragment="member" class="navbar-nav">
 		<!-- Home -->
 		<li class="nav-item">
-			<a href="#" th:classappend="${active eq 'home'} ? 'active' : ''" class="nav-link">
+			<a th:href="@{/member/home}" th:classappend="${active eq 'home'} ? 'active' : ''" class="nav-link">
 				<i class="bi bi-house"></i> Member Home
 			</a>
 		</li>
 		
 		<!-- Ledger Management -->
 		<li class="nav-item">
-			<a href="#" th:classappend="${active eq 'ledger'} ? 'active' : ''" class="nav-link">
+			<a th:href="@{/manager/ledger}" th:classappend="${active eq 'ledger'} ? 'active' : ''" class="nav-link">
 				<i class="bi bi-tags"></i> Ledgers
 			</a>
 		</li>
 		
 		<!-- Employee Management -->
 		<li class="nav-item">
-			<a href="#" th:classappend="${active eq 'employee'} ? 'active' : ''" class="nav-link">
+			<a th:href="@{/manager/employee}" th:classappend="${active eq 'employee'} ? 'active' : ''" class="nav-link">
 				<i class="bi bi-people"></i> Employees
 			</a>
 		</li>

@@ -20,16 +20,19 @@
 			</h5>
 			
 			<!-- Name -->
-			<div th:replace="~{/fragments/components :: property(name = 'Name', value = 'Aung Aung')}" class=""></div>
+			<div th:insert="~{/fragments/components :: property(name = 'Name', value = 'Aung Aung')}" class="mb-2"></div>
 			
 			<!-- Email -->
-			<div th:replace="~{/fragments/components :: property(name = 'Email', value = 'aung@gmail.com')}"></div>
+			<div th:insert="~{/fragments/components :: property(name = 'Email', value = 'aung@gmail.com')}" class="mb-2"></div>
 			
 			<!-- Role -->
+			<div th:insert="~{/fragments/components :: property(name = 'Role', value = 'Company Account')}" class="mb-2"></div>
 			
 			<!-- Entry Date -->
+			<div th:insert="~{/fragments/components :: property(name = 'Entry Date', value = '2023-08-15')}" class="mb-2"></div>
 			
 			<!-- Status -->
+			<div th:insert="~{/fragments/components :: property(name = 'Status', value = 'Active')}" class="mb-2"></div>
 		</div>
 	</section>
 	
@@ -43,7 +46,14 @@
 				<a href="#" class="btn-link">
 					<i class="bi bi-pencil"></i>
 				</a>
+
 			</h5>
+
+			<!-- Name -->
+			<div th:insert="~{/fragments/components :: property(name = 'Name', value = 'Start Company')}" class="mb-2"></div>
+
+			<!-- Phone -->
+			<div th:insert="~{/fragments/components :: property(name = 'Phone', value = '0919128383')}" class="mb-2"></div>
 		</div>
 	</section>
 

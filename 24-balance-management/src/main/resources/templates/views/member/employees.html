@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'Employee Management', active = 'employee', menu = ~{/fragments/navigations :: member})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<main>
+		
+		<div class="d-flex justify-content-between align-items-center">
+			<div th:replace="~{/fragments/components :: pageTitle(title = 'Employee Management', icon = 'bi-people')}"></div>
+		</div>
+		
+		<div th:replace="~{/fragments/components :: spacer-3}"></div>
+		
+		<!-- Search Bar -->
+		<form action="#" class="row">
+			
+			<!-- Role -->
+			<div class="col-auto">
+				<label class="form-label">Role</label>
+				<select class="form-select">
+					<option value="">All Roles</option>
+				</select>
+			</div>
+			
+			<!-- Status -->
+			<div class="col-auto">
+				<label class="form-label">Status</label>
+				<select class="form-select">
+					<option value="">All Status</option>
+				</select>
+			</div>
+			
+			<!-- Name -->
+			<div class="col-auto">
+				<label class="form-label">Name</label>
+				<input type="text" class="form-control" placeholder="Search Name" />
+			</div>
+			
+			<div class="col btn-wrapper">
+				<button class="btn btn-outline-dark">
+					<i class="bi-search"></i> Search
+				</button>
+				
+				<a th:href="@{|/manager/employee/${1}|}" class="btn btn-outline-danger">
+					<i class="bi-plus"></i> Add New
+				</a>
+			</div>
+		</form>
+		
+		<!-- Result Table -->
+		<table class="table table-striped my-4">
+			<thead>
+				<tr>
+					<th>Employee ID</th>
+					<th>Name</th>
+					<th>Role</th>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>Status</th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>EMP-001</td>
+					<td>Thidar</td>
+					<td>Manager</td>
+					<td>thidar@gmail.com</td>
+					<td>0918273734</td>
+					<td>Activated</td>
+					<td></td>
+				</tr>
+			</tbody>
+		
+		</table>
+		
+		<!-- Pagination -->
+		<section th:replace="~{/fragments/components :: pagination}"></section>
+		
+	</main>
+
+</body>
+</html>
