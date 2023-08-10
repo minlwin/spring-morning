@@ -12,15 +12,81 @@
 		<div class="d-flex justify-content-between align-items-center">
 			<div th:replace="~{/fragments/components :: pageTitle(title = 'Ledger Management', icon = 'bi-tags')}"></div>
 			
-			<a href="#" class="btn btn-outline-secondary">
-				<i class="bi bi-plus"></i> Add New
-			</a>	
+			
+			<div class="same-with-btns">
+				<a href="#" class="btn btn-outline-dark">
+					<i class="bi-tags"></i> All Types
+				</a>			
+				<a href="#" class="btn btn-outline-dark">
+					<i class="bi-arrow-up-square"></i> Credit
+				</a>			
+				<a href="#" class="btn btn-outline-dark">
+					<i class="bi-arrow-down-square"></i> Debit
+				</a>			
+				<a id="addNewBtn" class="btn btn-outline-danger">
+					<i class="bi bi-plus"></i> Add New
+				</a>	
+			</div>
 		</div>
 		
 		<div th:replace="~{/fragments/components :: spacer-3}"></div>
 		
-		<div class="row">
+		<table class="table table-striped mb-4">
+			<thead>
+				<tr>
+					<th>Code</th>
+					<th>Type</th>
+					<th>Name</th>
+					<th class="text-end">Per Month</th>
+					<th class="text-end">Per Year</th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>DEB-001</td>
+					<td>Debit</td>
+					<td>Monthly Office Usage</td>
+					<td class="text-end">35,600</td>
+					<td class="text-end">450,210</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- Pagination -->
+		<section th:replace="~{/fragments/components :: pagination}"></section>
+		
+		<div th:replace="~{/fragments/modal :: dialog(modalId = 'ledgerEdit', content = ~{:: modalContent})}">
+			<form th:action="@{/manager/ledger}" method="post" class="modal-content" th:fragment="modalContent">
+				<h5 class="modal-header">
+					<span>
+						<i class="bi-pencil"></i> Edit Ledger
+					</span>
+				</h5>
+				
+				<div class="modal-body">
+					<div class="mb-3">
+						<label class="form-label">Ledger Type</label>
+						<select class="form-select">
+							<option value="">Select Ledger Type</option>
+						</select>
+					</div>
+					
+					<div class="mb-3">
+						<label class="form-label">Ledger Name</label>
+						<input type="text" placeholder="Enter Ledger Name" class="form-control" />
+					</div>
+					
+					<button class="btn btn-outline-dark">
+						<i class="bi-save"></i> Save
+					</button>
+				</div>
+			</form>
 		</div>
+		
+		<script th:src="@{/js/ledgers.js}"></script>
 		
 	</main>
 

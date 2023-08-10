@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section th:fragment="dialog" >
+		<div th:id="${modalId}" class="modal">
+			<div class="modal-dialog">
+				<div th:replace="${content}"></div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

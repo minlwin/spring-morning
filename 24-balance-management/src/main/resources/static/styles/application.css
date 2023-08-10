@@ -25,3 +25,7 @@ html, body {
 .btn-wrapper {
 	padding-top: 2rem;
 }
+
+.same-with-btns .btn{
+	width: 120px;
+}
