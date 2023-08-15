@@ -14,7 +14,7 @@
 					<i class="bi bi-person"></i> Member Profile
 				</span>
 				
-				<a href="#" class="btn-link">
+				<a id="memberProfileEditBtn" class="btn-link">
 					<i class="bi bi-pencil"></i>
 				</a>
 			</h5>
@@ -22,11 +22,11 @@
 			<!-- Name -->
 			<div th:insert="~{/fragments/components :: property(name = 'Name', value = 'Aung Aung')}" class="mb-2"></div>
 			
+			<!-- Phone -->
+			<div th:insert="~{/fragments/components :: property(name = 'Phone', value = '09181717117')}" class="mb-2"></div>
+			
 			<!-- Email -->
 			<div th:insert="~{/fragments/components :: property(name = 'Email', value = 'aung@gmail.com')}" class="mb-2"></div>
-			
-			<!-- Role -->
-			<div th:insert="~{/fragments/components :: property(name = 'Role', value = 'Company Account')}" class="mb-2"></div>
 			
 			<!-- Entry Date -->
 			<div th:insert="~{/fragments/components :: property(name = 'Entry Date', value = '2023-08-15')}" class="mb-2"></div>
@@ -36,6 +36,48 @@
 		</div>
 	</section>
 	
+	<section th:fragment="memberProfileEdit">
+		
+		<div th:replace="~{/fragments/modal :: dialog(modalId = 'memberProfileEditModalDialog', content = ~{::memberProfileEditForm})}">
+			
+			<form th:fragment="memberProfileEditForm" class="modal-content"  method="post">
+				
+				<div class="modal-header">
+					<h5 class="modal-title"><i class="bi-person"></i> Edit Profile</h5>
+				</div>
+				
+				<div class="modal-body">
+					<!-- Name -->
+					<div class="mb-3">
+						<label class="form-label">Name</label>
+						<input type="text" placeholder="Enter Name" class="form-control" />
+					</div>
+					
+					<!-- Phone -->
+					<div class="mb-3">
+						<label class="form-label">Phone</label>
+						<input type="tel" placeholder="Enter Phone" class="form-control" />
+					</div>
+					
+					<!-- Email -->
+					<div class="mb-3">
+						<label class="form-label">Email</label>
+						<input type="email" placeholder="Enter Email" class="form-control" />
+					</div>
+				</div>
+				
+				<div class="modal-footer">
+					<button class="btn btn-outline-dark">
+						<i class="bi-save"></i> Save
+					</button>
+				</div>
+			
+			</form>
+		
+		</div>
+	
+	</section>	
+	
 	<section th:fragment="company" class="card">
 		<div class="card-body">
 			<h5 class="card-title d-flex justify-content-between">
@@ -43,7 +85,7 @@
 					<i class="bi bi-briefcase"></i> Company Profile
 				</span>
 
-				<a href="#" class="btn-link">
+				<a id="companyProfileEditBtn" class="btn-link">
 					<i class="bi bi-pencil"></i>
 				</a>
 
@@ -56,6 +98,43 @@
 			<div th:insert="~{/fragments/components :: property(name = 'Phone', value = '0919128383')}" class="mb-2"></div>
 		</div>
 	</section>
-
+	
+	<section th:fragment="companyProfileEdit">
+		
+		<div th:replace="~{/fragments/modal :: dialog(modalId = 'companyProfileEditModalDialog', content = ~{::companyProfileEditForm})}">
+			
+			<form th:fragment="companyProfileEditForm" class="modal-content"  method="post">
+				
+				<div class="modal-header">
+					<h5 class="modal-title"><i class="bi-briefcase"></i> Edit Company</h5>
+				</div>
+				
+				<div class="modal-body">
+					<!-- Name -->
+					<div class="mb-3">
+						<label class="form-label">Name</label>
+						<input type="text" placeholder="Enter Name" class="form-control" />
+					</div>
+					
+					<!-- Phone -->
+					<div class="mb-3">
+						<label class="form-label">Phone</label>
+						<input type="tel" placeholder="Enter Phone" class="form-control" />
+					</div>
+					
+				</div>
+				
+				<div class="modal-footer">
+					<button class="btn btn-outline-dark">
+						<i class="bi-save"></i> Save
+					</button>
+				</div>
+			
+			</form>
+		
+		</div>
+	
+	</section>
+	
 </body>
 </html>

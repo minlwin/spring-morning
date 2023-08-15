@@ -23,17 +23,21 @@
 			<div class="col-3">
 				<!-- Profile -->
 				<div th:insert="~{/fragments/profile :: member}" class="mb-3"></div>
+				<div th:insert="~{/fragments/profile :: memberProfileEdit}" th:fragment="modalContent" ></div>
 				
 				<!-- Company Profile -->
 				<div th:insert="~{/fragments/profile :: company}"></div>
+				<div th:insert="~{/fragments/profile :: companyProfileEdit}" th:fragment="modalContent" ></div>
 			
 			</div>
 			
 			<div class="col">
 				<!-- Projects -->
 			</div>
+			
 		</div>
 		
+		<script th:src="@{/js/member-home.js}"></script>
 	</main>
 
 </body>
