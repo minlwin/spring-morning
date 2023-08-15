@@ -1,28 +1,38 @@
 package com.jdc.balance.controller.member;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jdc.balance.model.data.form.ProjectMemberForm;
 
+@Controller
+@RequestMapping("manager/projects/members")
 public class ProjectMemberController {
 
-	public ProjectMemberController() {
+	@GetMapping("{project}")
+	public String load(@PathVariable int project, ModelMap model) {
+		// TODO implement here
+		return "views/project/member-settings";
 	}
 
-	public String load(int project, ModelMap model) {
-		// TODO implement here
-		return "";
+	@PostMapping("{project}")
+	public String save(
+			@PathVariable int project, 
+			@ModelAttribute("form") ProjectMemberForm form, BindingResult result) {
+
+		return "redirect:/manager/projects/members/%d".formatted(project);
 	}
 
-	public String save(int project, ProjectMemberForm form, BindingResult result) {
+	@ModelAttribute("form") 
+	public ProjectMemberForm form(@PathVariable int project) {
 		// TODO implement here
-		return "";
-	}
-
-	public ProjectMemberForm form(int project) {
-		// TODO implement here
-		return null;
+		return new ProjectMemberForm();
 	}
 
 }

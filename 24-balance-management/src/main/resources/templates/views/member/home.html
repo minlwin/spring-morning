@@ -12,7 +12,7 @@
 		<div class="d-flex justify-content-between align-items-center">
 			<div th:replace="~{/fragments/components :: pageTitle(title = 'Member Home', icon = 'bi-house')}"></div>
 			
-			<a href="#" class="btn btn-outline-secondary">
+			<a th:href="@{/manager/projects/edit}" class="btn btn-outline-secondary">
 				<i class="bi bi-plus"></i> Add New Project
 			</a>	
 		</div>

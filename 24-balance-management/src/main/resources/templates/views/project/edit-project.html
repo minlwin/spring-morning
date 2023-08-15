@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'Member Home', active = 'home', menu = ~{/fragments/navigations :: member})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<main>
+		<div class="d-flex justify-content-between align-items-center">
+			<div th:replace="~{/fragments/components :: pageTitle(title = 'Edit Project', icon = 'bi-pencil')}"></div>
+		</div>
+		
+		<form th:action="@{/manager/projects/edit}" method="post">
+			
+			<!-- Customer Company -->
+			<h5>Customer Company Information</h5>
+			
+			<div class="row">
+				<!-- Company Type -->
+				<div class="col-3">
+					<label class="form-label">Company Type</label>
+					<select class="form-select">
+						<option value="">Select Type</option>
+					</select>
+				</div>
+				
+				<!-- Dica Registration Number -->
+				<div class="col-3">
+					<label class="form-label">Registration Number</label>
+					<input type="text" placeholder="Enter Registration Number" class="form-control" />
+				</div>
+				
+				<!-- Company Name -->
+				<div class="col-3">
+					<label class="form-label">Company Name</label>
+					<input type="text" placeholder="Enter Company Name" class="form-control" />
+				</div>
+			
+			</div>			
+			
+			<!-- Customer Contact -->
+			<h5 class="mt-4">Contact Person Information</h5>
+			
+			<div class="row">
+				<!-- Contact Person -->
+				<div class="col">
+					<label class="form-label">Contact Person Name</label>
+					<input type="text" placeholder="Enter Contact Person Name" class="form-control" />
+				</div>
+				
+				<!-- Contact Person Role -->
+				<div class="col">
+					<label class="form-label">Contact Position</label>
+					<input type="text" placeholder="Enter Contact Position" class="form-control" />
+				</div>
+				
+				<!-- Contact Person Phone -->
+				<div class="col">
+					<label class="form-label">Contact Phone</label>
+					<input type="tel" placeholder="Enter Contact Phone" class="form-control" />
+				</div>
+				
+				<!-- Contact Person Email -->
+				<div class="col">
+					<label class="form-label">Contact Email</label>
+					<input type="email" placeholder="Enter Contact Email" class="form-control" />
+				</div>
+			
+			</div>
+			
+			<!-- Remark -->
+			<div class="mt-4">
+				<label class="form-label">Remark</label>
+				<textarea rows="4" cols="40" class="form-control"></textarea>
+			</div>
+			
+			<div class="mt-4">
+				<button class="btn btn-outline-dark">
+					<i class="bi-save"></i> Save
+				</button>
+			</div>
+		
+		</form>
+	
+	</main>
+
+</body>
+</html>
