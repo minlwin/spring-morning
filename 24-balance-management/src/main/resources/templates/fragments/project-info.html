@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section th:fragment="component">
+		
+		<!-- Company Info -->	
+		<div class="card mb-3">
+			<div class="card-body">
+				<h5 class="card-title">
+					<i class="bi-building"></i> 
+					<span>Project Name</span>
+				</h5>
+				
+				<div class="d-flex flex-column">
+					<!-- Registration Number -->
+					<span>DICA Registration Number</span>
+					
+					<!-- Company Type -->
+					<span>Company Type</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="card mb-3">
+			<div class="card-body">
+				<h5 class="card-title">
+					<i class="bi-person"></i> 
+					<span>Contact Name</span>
+				</h5>
+				
+				<div class="d-flex flex-column">
+				
+					<!-- Role -->
+					<span>Role Name</span>
+					
+					<!-- Phone -->
+					<span>Phone Number</span>
+					
+					<!-- Email Address -->
+					<span>Email Address</span>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div>
+			<a href="#" class="btn btn-outline-dark d-block w-100">
+				<i class="bi-pencil"></i> Edit Project
+			</a>
+		</div>
+	</section>
+
+</body>
+</html>

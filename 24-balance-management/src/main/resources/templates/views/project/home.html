@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
-	th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'Member Home', active = 'home', menu = ~{/fragments/navigations :: member})}">
+	th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'Project Home', active = 'home', menu = ~{/fragments/navigations :: member})}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -12,13 +12,27 @@
 			<div th:replace="~{/fragments/components :: pageTitle(title = 'Project Home', icon = 'bi-clipboard-check')}"></div>
 		</div>
 		
-		<!-- Project Information -->
+		<div class="row mt-3">
+			<!-- Project Information -->
+			<div class="col-3">
+				<div th:replace="~{/fragments/project-info :: component}"></div>
+			</div>
+			
+			<div class="col">
+				<!-- Summary Informations -->
+				<div th:insert="~{/fragments/project-summary :: component}" class="mb-4"></div>
 		
-		<!-- Project Member -->
-		
-		<!-- Summary Informations -->
-		
-		<!-- Sub Menus for Project -->
+				<!-- Ledger Summary -->
+				<div th:insert="~{/fragments/project-ledgers :: credit}" class="mb-4"></div>
+
+				<div th:insert="~{/fragments/project-ledgers :: debit}" class="mb-4"></div>
+			</div>
+			
+			<div class="col-3">
+				<!-- Project Member -->
+				<div th:insert="~{/fragments/project-members :: component}"></div>
+			</div>
+		</div>
 	
 	</main>	
 

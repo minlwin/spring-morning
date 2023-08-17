@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section th:fragment="credit">
+		<h5><i class="bi-arrow-up"></i> Credit Ledgers</h5>
+		
+		<div th:insert="~{:: table}"></div>
+	</section>
+
+	<section th:fragment="debit">
+		<h5><i class="bi-arrow-down"></i> Debit Ledgers</h5>
+	
+		<div th:insert="~{:: table}"></div>
+	</section>
+	
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Ledger</th>
+				<th class="text-end">Current Month</th>
+				<th class="text-end">Current Year</th>
+				<th class="text-end">Total</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+				<td>Ledger Name</td>
+				<td class="text-end">120,292</td>
+				<td class="text-end">120,292</td>
+				<td class="text-end">120,292</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

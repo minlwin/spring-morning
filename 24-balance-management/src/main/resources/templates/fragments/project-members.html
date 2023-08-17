@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section th:fragment="component" class="card">
+		<div class="card-body">
+			<h5 class="card-title d-flex justify-content-between">
+				<span>
+					<i class="bi-people"></i> Members
+				</span>
+				
+				<span>
+					<a href="#" class="btn-link">
+						<i class="bi-plus-lg"></i>
+					</a>
+				</span>
+			</h5>
+			
+			<div class="d-flex flex-column mb-3">
+				<span>Member Name</span>
+				<span class="text-secondary">Phone Number</span>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>
