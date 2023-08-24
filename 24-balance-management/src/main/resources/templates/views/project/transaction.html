@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/common :: layout(content = ~{::main}, title = ${type}, active = 'home', menu = ~{/fragments/navigations :: member})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<main>
+		<div class="d-flex justify-content-between align-items-center">
+			<div th:replace="~{/fragments/components :: pageTitle(title = |${type} Management|, icon = 'bi-list')}"></div>
+			
+			<div th:replace="~{/fragments/navigations :: project-sub-menu(active = |project${type}|, project = ${1})}"></div>			
+		</div>
+		<div th:replace="~{/fragments/components :: spacer-3}"></div>
+		
+		<!-- Search -->
+		<form th:action="@{|/employee/transaction/${projectId}/${type}|}" class="row">
+			<!-- Ledgers -->
+			<div class="col-auto">
+				<label class="form-label">Ledger</label>
+				<select name="ledger" class="form-select">
+					<option value="">All Ledgers</option>
+				</select>
+			</div>
+			
+			<!-- Date From -->
+			<div class="col-auto">
+				<label class="form-label">Date From</label>
+				<input name="from" type="date" class="form-control" />
+			</div>
+			
+			<!-- Date To -->
+			<div class="col-auto">
+				<label class="form-label">Date To</label>
+				<input name="to" type="date" class="form-control" />
+			</div>
+			
+			<!-- Buttons -->
+			<div class="col btn-wrapper">
+				<button class="btn btn-outline-dark">
+					<i class="bi-search"></i> Search
+				</button>
+				
+				<a href="#" class="btn btn-outline-dark">
+					<i class="bi-plus"></i> Add New
+				</a>
+			</div>
+		</form>
+		
+		<!-- Table -->
+		<table class="table table-striped my-4">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Ledger</th>
+					<th>IssueAt</th>
+					<th>Employee</th>
+					<th>Remark</th>
+					<th class="text-end">Amount</th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Office Usage</td>
+					<td>2023-10-01</td>
+					<td>Aung Aung</td>
+					<td>Purchase Drinking Water</td>
+					<td class="text-end">2,300</td>
+					<td class="text-center">
+						<a href="#" class="btn-link">
+							<i class="bi-send"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!-- Pagination -->
+		<section th:replace="~{/fragments/components :: pagination}"></section>
+	
+	</main>	
+
+</body>
+</html>

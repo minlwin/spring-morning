@@ -72,5 +72,21 @@
 		</li>
 	</ul>
 
+	
+	<div th:fragment="project-sub-menu" class="same-with-btns">
+		<a th:href="@{|/employee/project/${project}|}" class="btn" th:classappend="${active eq 'projectHome'} ? 'btn-dark' : 'btn-outline-dark'">
+			<i class="bi-house"></i> Home
+		</a>			
+		<a th:href="@{|/employee/transaction/${project}/Credit|}" class="btn" th:classappend="${active eq 'projectCredit'} ? 'btn-dark' : 'btn-outline-dark'">
+			<i class="bi-arrow-up-square"></i> Credit
+		</a>			
+		<a th:href="@{|/employee/transaction/${project}/Debit|}" class="btn" th:classappend="${active eq 'projectDebit'} ? 'btn-dark' : 'btn-outline-dark'">
+			<i class="bi-arrow-down-square"></i> Debit
+		</a>			
+		<a th:href="@{|/employee/reports/${project}|}" class="btn" th:classappend="${active eq 'projectReport'} ? 'btn-dark' : 'btn-outline-dark'">
+			<i class="bi bi-bar-chart"></i> Report
+		</a>	
+	</div>
+	
 </body>
 </html>

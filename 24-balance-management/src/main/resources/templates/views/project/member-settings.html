@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'Project Member', active = 'home', menu = ~{/fragments/navigations :: member})}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+	
+	<main>
+		<div class="d-flex justify-content-between align-items-center">
+			<div th:replace="~{/fragments/components :: pageTitle(title = 'Project Members', icon = 'bi-people')}"></div>
+		</div>
+		
+		<div class="row mt-3">
+			<!-- Project Information -->
+			<div class="col-3">
+				<div th:replace="~{/fragments/project-info :: component}"></div>
+			</div>
+			
+			<div class="col">
+				<form th:action="@{|/manager/projects/members/${1}|}" method="post">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Employee ID</th>
+								<th>Name</th>
+								<th>Role</th>
+								<th>Email</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<tr>
+								<td>
+									<div class="form-check">
+										<input id="employeeCheck" type="checkbox" class="form-check-input" /> 
+										<label for="employeeCheck" class="form-check-label">EMP-001</label>
+									</div>
+								</td>
+								<td>Aung Aung</td>
+								<td>Manager</td>
+								<td>aung@gmail.com</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<div class="mt-4">
+						<button class="btn btn-outline-dark">
+							<i class="bi-save"></i> Save
+						</button>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+	
+	</main>	
 
 </body>
 </html>

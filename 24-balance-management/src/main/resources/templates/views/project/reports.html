@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	th:replace="~{/fragments/common :: layout(content = ~{::main}, title = 'Balance Report', active = 'home', menu = ~{/fragments/navigations :: member})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<main>
+		<div class="d-flex justify-content-between align-items-center">
+			<div th:replace="~{/fragments/components :: pageTitle(title = 'Balance Report', icon = 'bi-bar-chart')}"></div>
+			
+			<div th:replace="~{/fragments/navigations :: project-sub-menu(active = 'projectReport', project = ${1})}"></div>			
+		</div>
+		
+		<div th:replace="~{/fragments/components :: spacer-3}"></div>
+		
+		<!-- Search -->
+		<form th:action="@{|/employee/reports/${projectId}|}" class="row">
+			<!-- Date From -->
+			<div class="col-auto">
+				<label class="form-label">Date From</label>
+				<input name="from" type="date" class="form-control" />
+			</div>
+			
+			<!-- Date To -->
+			<div class="col-auto">
+				<label class="form-label">Date To</label>
+				<input name="to" type="date" class="form-control" />
+			</div>
+			
+			<!-- Buttons -->
+			<div class="col btn-wrapper">
+				<button class="btn btn-outline-dark">
+					<i class="bi-search"></i> Search
+				</button>
+			</div>
+		</form>
+		
+		<!-- Table -->
+		<table class="table table-striped my-4">
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Ledger</th>
+					<th>IssueAt</th>
+					<th>Employee</th>
+					<th class="text-end">Credit</th>
+					<th class="text-end">Debit</th>
+					<th class="text-end">Balance</th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>Credit</td>
+					<td>Server Charges</td>
+					<td>2023-10-10</td>
+					<td>Aung Aung</td>
+					<td class="text-end">360,000</td>
+					<td class="text-end">0</td>
+					<td class="text-end">360,000</td>
+					<td class="text-center">
+						<a href="#" class="btn-link">
+							<i class="bi-send"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!-- Pagination -->
+		<section th:replace="~{/fragments/components :: pagination}"></section>
+	
+	</main>	
+
+</body>
+</html>

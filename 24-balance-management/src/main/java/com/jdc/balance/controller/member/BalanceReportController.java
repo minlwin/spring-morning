@@ -21,7 +21,7 @@ public class BalanceReportController {
 			@RequestParam Optional<LocalDate> to,
 			ModelMap model) {
 		// TODO implement here
-		return "";
+		return "views/project/reports";
 	}
 
 }

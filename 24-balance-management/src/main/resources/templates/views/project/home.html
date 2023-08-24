@@ -10,6 +10,8 @@
 	<main>
 		<div class="d-flex justify-content-between align-items-center">
 			<div th:replace="~{/fragments/components :: pageTitle(title = 'Project Home', icon = 'bi-clipboard-check')}"></div>
+			
+			<div th:replace="~{/fragments/navigations :: project-sub-menu(active = 'projectHome', project = ${1})}"></div>			
 		</div>
 		
 		<div class="row mt-3">

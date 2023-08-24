@@ -26,7 +26,7 @@ public class ProjectMemberController {
 			@PathVariable int project, 
 			@ModelAttribute("form") ProjectMemberForm form, BindingResult result) {
 
-		return "redirect:/manager/projects/members/%d".formatted(project);
+		return "redirect:/employee/project/%d".formatted(project);
 	}
 
 	@ModelAttribute("form") 
