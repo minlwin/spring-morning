@@ -1,5 +1,10 @@
 package com.jdc.balance.model.data.form;
 
-public class ProjectMemberForm {
+import java.util.List;
 
+import lombok.Data;
+
+@Data
+public class ProjectMemberForm {
+	private List<Integer> employeeIds;
 }

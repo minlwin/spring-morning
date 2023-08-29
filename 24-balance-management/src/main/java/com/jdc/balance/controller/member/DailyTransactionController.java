@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jdc.balance.model.data.entity.consts.BalanceType;
 import com.jdc.balance.model.data.form.TransactionForm;
-import com.jdc.balance.model.data.form.TransactionForm.Type;
 
 @Controller
 @RequestMapping("employee/transaction")
@@ -21,7 +21,7 @@ public class DailyTransactionController {
 
 	@GetMapping("{project}/{type}")
 	public String search(
-			@PathVariable int project, @PathVariable Type type, 
+			@PathVariable int project, @PathVariable BalanceType type, 
 			@RequestParam Optional<Integer> ledger, 
 			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Optional<LocalDate> from, 
 			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Optional<LocalDate> to) {
@@ -60,7 +60,7 @@ public class DailyTransactionController {
 	}
 	
 	@ModelAttribute("type")
-	Type type(@PathVariable Type type) {
+	BalanceType type(@PathVariable BalanceType type) {
 		return type;
 	}
 
