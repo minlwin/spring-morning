@@ -3,7 +3,7 @@ package com.jdc.balance.model.data.entity;
 import com.jdc.balance.model.data.entity.embedded.AuditInfo;
 import com.jdc.balance.model.data.entity.embedded.ProjectMemberPK;
 
-import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -15,7 +15,7 @@ import lombok.Getter;
 @Table(name = "PROJECT_MEMBER")
 public class ProjectMember {
 
-	@Embedded
+	@EmbeddedId
 	private ProjectMemberPK id;
 
 	@ManyToOne(optional = false)

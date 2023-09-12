@@ -1,5 +1,7 @@
 package com.jdc.balance.model.data.entity;
 
+import java.util.List;
+
 import com.jdc.balance.model.data.entity.embedded.AuditInfo;
 import com.jdc.balance.model.data.entity.embedded.Contact;
 
@@ -7,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -33,5 +36,11 @@ public class Project {
 	private Contact contact;
 
 	private AuditInfo audit;
+	
+	@OneToMany(mappedBy = "project")
+	private List<ProjectMember> members;
+	
+	@OneToMany(mappedBy = "project")
+	private List<Transaction> transactions;
 
 }

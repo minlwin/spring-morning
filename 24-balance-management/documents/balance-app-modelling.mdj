@@ -3892,7 +3892,7 @@
 									"font": "Arial;13;0",
 									"left": 347.5,
 									"top": 668.5,
-									"width": 169.40234375,
+									"width": 168,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGJQo1GJOAJ8DE="
@@ -4088,7 +4088,7 @@
 									"font": "Arial;13;0",
 									"left": 355.5,
 									"top": 484.5,
-									"width": 169.66259765625,
+									"width": 168,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGJQo4FaOGfbqc="
@@ -5752,7 +5752,7 @@
 									"font": "Arial;13;0",
 									"left": 693,
 									"top": 692.5,
-									"width": 177.59716796875,
+									"width": 177,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGJQpVuZxmNCmw="
@@ -7786,7 +7786,7 @@
 									"font": "Arial;13;0",
 									"left": 352,
 									"top": 724.5,
-									"width": 154.4853515625,
+									"width": 154,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGJSYygm2s0AlE="
@@ -15494,7 +15494,7 @@
 											"left": 874,
 											"top": 186,
 											"width": 108,
-											"height": 26,
+											"height": 13,
 											"text": "Access Log Viewer",
 											"wordWrap": true
 										}
@@ -16954,7 +16954,7 @@
 											"left": 1234,
 											"top": 721,
 											"width": 108,
-											"height": 26,
+											"height": 13,
 											"text": "Transaction Details",
 											"wordWrap": true
 										}
@@ -17346,7 +17346,7 @@
 											"left": 311,
 											"top": 354,
 											"width": 103,
-											"height": 26,
+											"height": 13,
 											"text": "Change Password",
 											"wordWrap": true
 										}

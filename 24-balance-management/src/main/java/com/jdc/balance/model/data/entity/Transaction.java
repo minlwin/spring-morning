@@ -1,6 +1,7 @@
 package com.jdc.balance.model.data.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.jdc.balance.model.data.entity.embedded.AuditInfo;
 
@@ -9,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -39,6 +41,9 @@ public class Transaction {
 
 	@Column(nullable = false)
 	private int amount;
+	
+	@OneToMany(mappedBy = "transaction")
+	private List<TransactionItem> items;
 
 	private AuditInfo audit;
 

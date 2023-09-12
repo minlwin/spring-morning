@@ -2,21 +2,24 @@ package com.jdc.balance.model.data.entity;
 
 import java.time.LocalDateTime;
 
-import ch.qos.logback.core.status.ErrorStatus;
+import com.jdc.balance.model.data.entity.consts.ErrorStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@SequenceGenerator(name = "error_log", allocationSize = 1)
+@Table(name = "ERROR_LOG")
+@SequenceGenerator(name = "seq_error_log", allocationSize = 1)
 public class ErrorLog {
 
 	@Id
-	@GeneratedValue(generator = "error_log")
+	@GeneratedValue(generator = "seq_error_log")
 	private long id;
 
 	private String exception;
