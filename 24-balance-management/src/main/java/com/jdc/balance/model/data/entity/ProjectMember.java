@@ -1,10 +1,13 @@
 package com.jdc.balance.model.data.entity;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import com.jdc.balance.model.data.entity.embedded.AuditInfo;
 import com.jdc.balance.model.data.entity.embedded.ProjectMemberPK;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -13,6 +16,7 @@ import lombok.Getter;
 @Entity
 @Getter
 @Table(name = "PROJECT_MEMBER")
+@EntityListeners(value = AuditingEntityListener.class)
 public class ProjectMember {
 
 	@EmbeddedId

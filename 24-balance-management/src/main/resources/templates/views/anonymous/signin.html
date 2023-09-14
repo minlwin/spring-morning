@@ -9,16 +9,16 @@
 
 	<main style="height: 500px" class="w-75 d-flex justify-content-center">
 	
-		<form action="#" class="w-50" method="post">
+		<form th:action="@{/public/signin}" class="w-50" method="post">
 			<h3><i class="bi bi-door-open"></i> Sign In</h3>
 			<p class="mb-4">Welcome to THE BALANCES!</p>
 			<div class="mb-3">
 				<label class="form-label">Login Email</label>
-				<input type="email" placeholder="Enter your login email" class="form-control" />
+				<input name="email" type="email" placeholder="Enter your login email" class="form-control" />
 			</div>
 			<div class="mb-3">
 				<label class="form-label">Password</label>
-				<input type="password" placeholder="Enter your password" class="form-control" />
+				<input name="pass" type="password" placeholder="Enter your password" class="form-control" />
 			</div>
 			
 			<div>

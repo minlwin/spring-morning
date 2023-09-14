@@ -2,12 +2,15 @@ package com.jdc.balance.model.data.entity;
 
 import java.time.LocalDate;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import com.jdc.balance.model.data.entity.consts.MemberStatus;
 import com.jdc.balance.model.data.entity.consts.Role;
 import com.jdc.balance.model.data.entity.embedded.AuditInfo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
@@ -21,6 +24,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "ACCOUNT")
+@EntityListeners(value = AuditingEntityListener.class)
 @Inheritance(strategy = InheritanceType.JOINED)
 @SequenceGenerator(name = "seq_account", allocationSize = 1)
 public abstract class Account {

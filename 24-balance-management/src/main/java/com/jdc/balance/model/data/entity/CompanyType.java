@@ -1,9 +1,12 @@
 package com.jdc.balance.model.data.entity;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import com.jdc.balance.model.data.entity.embedded.AuditInfo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
@@ -13,6 +16,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "COMPANY_TYPE")
+@EntityListeners(value = AuditingEntityListener.class)
 @SequenceGenerator(name = "seq_company_type", allocationSize = 1)
 public class CompanyType {
 
