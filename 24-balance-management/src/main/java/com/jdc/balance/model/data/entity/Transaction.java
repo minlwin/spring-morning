@@ -49,6 +49,6 @@ public class Transaction {
 	@OneToMany(mappedBy = "transaction")
 	private List<TransactionItem> items;
 
-	private AuditInfo audit;
+	private AuditInfo audit = new AuditInfo();
 
 }

@@ -35,6 +35,6 @@ public class Ledger {
 	@Column(nullable = false)
 	private BalanceType type;
 
-	private AuditInfo audit;
+	private AuditInfo audit = new AuditInfo();
 
 }

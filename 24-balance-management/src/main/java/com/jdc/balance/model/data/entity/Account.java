@@ -50,6 +50,6 @@ public abstract class Account {
 	@Column(name = "regist_at")
 	private LocalDate registAt;
 
-	private AuditInfo audit;
+	private AuditInfo audit = new AuditInfo();
 
 }

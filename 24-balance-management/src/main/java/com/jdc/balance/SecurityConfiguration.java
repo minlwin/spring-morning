@@ -24,7 +24,7 @@ public class SecurityConfiguration {
 		
 		http.authorizeHttpRequests(config -> {
 			config.requestMatchers(
-					"/styles/**", "/js/**", "/public/**").permitAll();
+					"/", "/images/**", "/styles/**", "/js/**", "/public/**").permitAll();
 			
 			config.requestMatchers("/member/**")
 				.hasAnyAuthority("Member", "Employee", "Manager", "Company");

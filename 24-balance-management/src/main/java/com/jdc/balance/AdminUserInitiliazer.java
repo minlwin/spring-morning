@@ -22,7 +22,6 @@ public class AdminUserInitiliazer {
 	
 	@EventListener(value = ContextRefreshedEvent.class)
 	void initAdmin() {
-		
 		if(repo.count() == 0) {
 			var admin = new Admin();
 			admin.setName("Min Lwin");
@@ -30,6 +29,7 @@ public class AdminUserInitiliazer {
 			admin.setPassword(passwordEncoder.encode("minlwin"));
 			admin.setRegistAt(LocalDate.now());
 			admin.setStatus(MemberStatus.Approved);
+			repo.save(admin);
 		}
 	}
 }

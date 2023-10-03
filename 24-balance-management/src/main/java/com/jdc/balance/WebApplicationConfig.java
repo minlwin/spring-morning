@@ -10,7 +10,6 @@ public class WebApplicationConfig implements WebMvcConfigurer{
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addRedirectViewController("/", "/public/home");
-		
 		registry.addViewController("/public/signin").setViewName("views/anonymous/signin");
 	}
 }

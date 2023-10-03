@@ -30,7 +30,7 @@ public class ProjectMember {
 	@JoinColumn(insertable = false, updatable = false)
 	private Member member;
 
-	private AuditInfo audit;
+	private AuditInfo audit = new AuditInfo();
 	
 	public ProjectMember() {
 		id = new ProjectMemberPK();

@@ -39,7 +39,7 @@ public class Project {
 
 	private Contact contact;
 
-	private AuditInfo audit;
+	private AuditInfo audit = new AuditInfo();
 	
 	@OneToMany(mappedBy = "project")
 	private List<ProjectMember> members;

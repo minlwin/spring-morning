@@ -36,6 +36,6 @@ public class CompanyType {
 	@Column(nullable = false, name = "subscription_fees")
 	private int subscriptionFees;
 
-	private AuditInfo audit;
+	private AuditInfo audit = new AuditInfo();
 
 }

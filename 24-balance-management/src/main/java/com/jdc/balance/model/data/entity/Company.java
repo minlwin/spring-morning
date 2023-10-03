@@ -41,7 +41,7 @@ public class Company {
 	@ManyToOne(optional = false)
 	private Member owner;
 
-	private AuditInfo audit;
+	private AuditInfo audit = new AuditInfo();
 	
 	@OneToMany(mappedBy = "company")
 	private List<Member> members = new ArrayList<>();
