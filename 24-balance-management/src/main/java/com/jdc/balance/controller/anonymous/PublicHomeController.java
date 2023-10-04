@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jdc.balance.model.data.entity.consts.Role;
+
 @Controller
 @RequestMapping("public/home")
 public class PublicHomeController {
@@ -13,8 +15,9 @@ public class PublicHomeController {
 	public String index() {
 		
 		var authentication = SecurityContextHolder.getContext().getAuthentication();
-		var home = authentication.getAuthorities().stream().map(a -> a.getAuthority())
-			.map(a -> "redirect:/%s/home".formatted(a.toLowerCase())).findAny().orElse(null);
+		var home = authentication.getAuthorities().stream()
+				.map(a -> a.getAuthority().equals(Role.Admin.name()) ? "admin" : "member")
+			.map(a -> "redirect:/%s/home".formatted(a)).findAny().orElse(null);
 		
 		if(null != home) {
 			return home;

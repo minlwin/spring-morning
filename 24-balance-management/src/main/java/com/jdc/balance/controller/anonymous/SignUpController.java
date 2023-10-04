@@ -1,5 +1,6 @@
 package com.jdc.balance.controller.anonymous;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -9,10 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jdc.balance.model.data.form.SignUpForm;
+import com.jdc.balance.model.service.MemberService;
 
 @Controller
 @RequestMapping("public/signup")
 public class SignUpController {
+	
+	@Autowired
+	private MemberService service;
 
 	@GetMapping
 	public String index() {
@@ -22,7 +27,14 @@ public class SignUpController {
 	@PostMapping
 	public String signUp(
 			@ModelAttribute("form") @Validated SignUpForm form, BindingResult result) {
-		return "redirect:/%s/home".formatted(form.getPassword());
+		
+		if(result.hasErrors()) {
+			return "views/anonymous/signup";
+		}
+		
+		service.signUp(form);
+		
+		return "redirect:/member/home";
 	}
 
 	@ModelAttribute("form")

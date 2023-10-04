@@ -12,7 +12,7 @@ import lombok.Setter;
 @Table(name = "ACCOUNT_MEMBER")
 public class Member extends Account {
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Company company;
 
 }
