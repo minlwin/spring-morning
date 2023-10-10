@@ -1,9 +1,8 @@
 package com.jdc.balance.model.repo;
 
-import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
-
 import com.jdc.balance.model.data.entity.Company;
+import com.jdc.balance.model.repo.base.BaseRepository;
 
-public interface CompanyRepo extends JpaRepositoryImplementation<Company, Long>{
+public interface CompanyRepo extends BaseRepository<Company, Long>{
 
 }

@@ -30,8 +30,8 @@ public class CompanyType {
 	@Column(nullable = false, name = "max_employee")
 	private int maxEmployee;
 
-	@Column(nullable = false, name = "min_employee")
-	private int minEmployee;
+	@Column(nullable = false, name = "max_projects")
+	private int maxProject;
 
 	@Column(nullable = false, name = "subscription_fees")
 	private int subscriptionFees;

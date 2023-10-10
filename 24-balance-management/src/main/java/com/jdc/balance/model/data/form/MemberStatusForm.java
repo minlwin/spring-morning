@@ -7,9 +7,6 @@ import lombok.Data;
 @Data
 public class MemberStatusForm {
 
-	public MemberStatusForm() {
-	}
-
 	private String email;
 	private Role role;
 

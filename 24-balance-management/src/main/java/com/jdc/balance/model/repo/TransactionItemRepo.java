@@ -1,9 +1,8 @@
 package com.jdc.balance.model.repo;
 
-import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
-
 import com.jdc.balance.model.data.entity.TransactionItem;
+import com.jdc.balance.model.repo.base.BaseRepository;
 
-public interface TransactionItemRepo extends JpaRepositoryImplementation<TransactionItem, Long>{
+public interface TransactionItemRepo extends BaseRepository<TransactionItem, Long>{
 
 }

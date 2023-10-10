@@ -11,12 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jdc.balance.model.data.entity.Member;
 import com.jdc.balance.model.data.entity.consts.MemberStatus;
 import com.jdc.balance.model.data.entity.consts.Role;
+import com.jdc.balance.model.data.form.MemberStatusForm;
 import com.jdc.balance.model.data.form.SignUpForm;
 import com.jdc.balance.model.data.vo.PageResultVo;
+import com.jdc.balance.model.data.vo.admin.MemberDetailsVo;
 import com.jdc.balance.model.data.vo.admin.MemberListVo;
 import com.jdc.balance.model.repo.MemberRepo;
 
 @Service
+@Transactional(readOnly = true)
 public class MemberService {
 	
 	@Autowired
@@ -40,8 +43,24 @@ public class MemberService {
 
 	public PageResultVo<MemberListVo> search(Optional<Role> role, Optional<String> name, Optional<LocalDate> from, Optional<LocalDate> to,
 			int page, int size) {
-		// TODO Auto-generated method stub
+		
+		// Create Count Query
+		
+		// Create Query 
+		
 		return null;
+	}
+
+	public MemberDetailsVo findByEmail(String email) {
+		return memberRepo.findOneByEmail(email)
+				.map(MemberDetailsVo::from).orElseThrow();
+	}
+
+	@Transactional
+	public void updateStatus(MemberStatusForm form) {
+		memberRepo.findOneByEmail(form.getEmail()).ifPresent(entity -> {
+			entity.setRole(entity.getRole());
+		});
 	}
 
 }

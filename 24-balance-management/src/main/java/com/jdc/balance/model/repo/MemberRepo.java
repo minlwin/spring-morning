@@ -1,9 +1,11 @@
 package com.jdc.balance.model.repo;
 
-import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+import java.util.Optional;
 
 import com.jdc.balance.model.data.entity.Member;
+import com.jdc.balance.model.repo.base.BaseRepository;
 
-public interface MemberRepo extends JpaRepositoryImplementation<Member, Long>{
+public interface MemberRepo extends BaseRepository<Member, Long>{
 
+	Optional<Member> findOneByEmail(String email);
 }

@@ -43,21 +43,28 @@ public class MemberManagementController {
 
 	@GetMapping("{email}")
 	public String showDetails(@PathVariable String email, ModelMap model) {
-		// TODO implement here
+		model.put("dto", service.findByEmail(email));
 		return "views/admin/member-details";
 	}
 
 	@PostMapping("{email}")
 	public String updateStatus(
+			@PathVariable String email, ModelMap model,
 			@ModelAttribute("form") @Validated MemberStatusForm form, BindingResult result) {
-		// TODO implement here
-		return "views/admin/member-details";
+		
+		if(result.hasErrors()) {
+			model.put("dto", service.findByEmail(email));
+			return "views/admin/member-details";
+		}
+		
+		service.updateStatus(form);
+		
+		return "redirect:/admin/member/%s".formatted(email);
 	}
 
 	@ModelAttribute("form")
 	public MemberStatusForm memberForm() {
-		// TODO implement here
-		return null;
+		return new MemberStatusForm();
 	}
 
 }

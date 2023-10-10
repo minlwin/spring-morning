@@ -1,9 +1,8 @@
 package com.jdc.balance.model.repo;
 
-import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
-
 import com.jdc.balance.model.data.entity.Admin;
+import com.jdc.balance.model.repo.base.BaseRepository;
 
-public interface AdminRepo extends JpaRepositoryImplementation<Admin, Long>{
+public interface AdminRepo extends BaseRepository<Admin, Long>{
 
 }
